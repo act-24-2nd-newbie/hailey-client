@@ -5,7 +5,7 @@ import '../styles/TextField.css';
 import type { TextFieldProps } from '../type/Interface';
 // import { useNavigate } from 'react-router-dom';
 
-const TextField = ({ borderVisible = true }: TextFieldProps) => {
+const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps) => {
   const [inputValue, setInputValue] = useState('');
   // const [buttonVisible, SetButtonVisible] = useState(false);
   // const navigate = useNavigate();
@@ -17,6 +17,10 @@ const TextField = ({ borderVisible = true }: TextFieldProps) => {
 
   const handleSendClick = () => {
     console.log({ inputValue });
+    if (onSend) {
+      onSend(inputValue); // Call the parent onSend function with the current input value
+    }
+
     setInputValue('');
   };
 
@@ -26,7 +30,7 @@ const TextField = ({ borderVisible = true }: TextFieldProps) => {
         <input
           id="textfield-input-text"
           type="text"
-          placeholder="text"
+          placeholder={placeholder}
           value={inputValue}
           onChange={(e) => {
             setInputValue(e.target.value);

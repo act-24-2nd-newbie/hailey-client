@@ -1,23 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import TextField from '../../components/TextField';
 // import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 const Login = () => {
+  const [name, setName] = useState('');
+  const handleNameSend = (value: string) => {
+    setName(value); // Update state with input value
+  };
   // const navigate = useNavigate();
   // const location = useLocation();
   return (
     <div>
-      <h2>Login Page</h2>
-      {/* <form>
-        <div>
-          <label>Username: </label>
-          <input type="text" name="username" />
-        </div>
-        <div>
-          <label>Password: </label>
-          <input type="password" name="password" />
-        </div>
-        <button type="submit">Login</button>
-      </form> */}
+      <h1>Login Page</h1>
+
+      <h2> What is your name? </h2>
+      <TextField borderVisible={true} placeholder="Input your name" onSend={handleNameSend} />
     </div>
   );
 };

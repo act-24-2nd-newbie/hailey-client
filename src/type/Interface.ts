@@ -4,4 +4,6 @@ export interface TopbarProps {
 
 export interface TextFieldProps {
   borderVisible?: boolean; // Optional prop to control border visibility
+  placeholder: string;
+  onSend: (value: string) => void;
 }
