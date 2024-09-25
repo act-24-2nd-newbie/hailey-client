@@ -11,7 +11,11 @@ const Topbar = ({ title = 'My Todo' }: TopbarProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); // 로그인 상태
 
   const handleLogoClick = () => {
-    navigate('/Home');
+    if (isLoggedIn) {
+      navigate('/Home');
+    } else {
+      navigate('/');
+    }
   };
 
   const handleLoginLogoutClick = () => {
@@ -25,21 +29,17 @@ const Topbar = ({ title = 'My Todo' }: TopbarProps) => {
 
   return (
     <div className="topbar">
-      <div className="topber-left-home" onClick={handleLogoClick}>
-        <img className="topber-left-home-img" src={ic_topbar_menu} />
+      <div className="topbar-left">
+        <img className="home" src={ic_topbar_menu} />
+        <h2 className="title"> My Todo </h2>
       </div>
 
-      <div className="topbar-center">
-        <h1>{title}</h1>
-      </div>
-
-      <div className="topbar-right-date">
-        <CurrentDateTime />
-      </div>
-
-      <div>
-        <button className="topbar-right-login" onClick={handleLoginLogoutClick}>
-          {isLoggedIn ? 'Logout' : 'Login'}
+      <div className="topbar-right">
+        <div className="date">
+          <CurrentDateTime />
+        </div>
+        <button className="login" onClick={handleLoginLogoutClick}>
+          {isLoggedIn ? 'Logout' : 'Sign up'}
         </button>
       </div>
     </div>

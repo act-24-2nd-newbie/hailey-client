@@ -1,7 +1,11 @@
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+  .topbar {
+    display: flex;                     /* Use flexbox for layout */
+    justify-content: space-between;    /* Space between left and right sections */
+    align-items: center;               /* Center items vertically */
+    padding: 10px 20px;                /* Add some padding */
+    background-color: #f8f9fa;         /* Optional: Background color */
+    border-bottom: 1px solid #ddd;     /* Optional: Border for separation */
     background: #6C77A7;
     color: white;
     padding: 10px 20px;
@@ -9,5 +13,34 @@
     top: 0;
     left:0;
     right:0;
-    height:50px;
+    height:48px;
+
+    width: Fixed (1,280px)px;
+    height: Fixed (48px)px;
+    padding: 9px 16px 9px 16px;
+    gap: 0px;
+    opacity: 0px;
+  }
+  
+  .topbar-left {
+    display: flex;                     /* Use flexbox for the left section */
+    align-items: center;               /* Center items vertically */
+  }
+  
+  .topbar-right {
+    display: flex;                     /* Use flexbox for the right section */
+    align-items: center;               /* Center items vertically */
+  }
+  
+  .title {
+    margin-left: 10px;                /* Space between icon and title */
+  }
+  
+  .date {
+    margin-right: 10px;                /* Space between date and button */
+  }
+  
+  .login {
+
+
   }

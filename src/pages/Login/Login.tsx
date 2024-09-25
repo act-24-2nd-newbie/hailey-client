@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import TextField from '../../components/TextField';
-// import { useNavigate, Link, useLocation } from 'react-router-dom';
-
-// const sessionStorage = window.sessionStorage.getItem('name');
+import { useNavigate } from 'react-router-dom';
+// import '../styles/Login.css';
 
 const Login = () => {
   const [name, setName] = useState<string>('');
@@ -13,28 +11,26 @@ const Login = () => {
   useEffect(() => {
     const storedName = sessionStorage.getItem('name');
     if (storedName) {
-      setPreviousLogin(JSON.parse(storedName)); // Set the previous login if it exists
+      setPreviousLogin(JSON.parse(storedName));
     }
   }, []);
 
   const handleNameSend = (value: string) => {
-    setName(value); // Update state with input value
+    setName(value);
     const existingNames = JSON.parse(sessionStorage.getItem('name') || '[]');
 
-    // Add the new name to the list if it's not already present
     if (!existingNames.includes(value)) {
-      existingNames.push(value); // Add the new name
-      sessionStorage.setItem('name', JSON.stringify(existingNames)); // Store the updated names in sessionStorage
-      setPreviousLogin(existingNames); // Update state to reflect the new list
+      existingNames.push(value);
+      sessionStorage.setItem('name', JSON.stringify(existingNames));
+      setPreviousLogin(existingNames);
     }
-    navigate('/Home');
+    navigate('/Home', { replace: true, state: { name: value } });
   };
 
   return (
     <div>
-      <h1>Welome</h1>
-
-      <h2> What is your name? </h2>
+      <h3>Welome</h3>
+      <h1> What is your name? </h1>
       <TextField borderVisible={true} placeholder="Input your name" onSend={handleNameSend} />
     </div>
   );

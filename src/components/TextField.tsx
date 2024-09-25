@@ -3,25 +3,20 @@ import ic_delete from '../../public/ic_delete.png';
 import ic_send from '../../public/ic_send.png';
 import '../styles/TextField.css';
 import type { TextFieldProps } from '../type/Interface';
-import { useNavigate } from 'react-router-dom';
 
 const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps) => {
   const [inputValue, setInputValue] = useState<string>('');
-  // const [buttonVisible, SetButtonVisible] = useState(false);
-  const navigate = useNavigate();
 
   const handleDeleteClick = () => {
     setInputValue('');
-    // SetButtonVisible(false)
   };
 
   const handleSendClick = () => {
     console.log({ inputValue });
     if (onSend) {
-      onSend(inputValue); // Call the parent onSend function with the current input value
+      onSend(inputValue);
     }
     setInputValue('');
-    navigate('/Home');
   };
 
   return (
