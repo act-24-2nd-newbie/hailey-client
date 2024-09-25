@@ -12,6 +12,6 @@ jobs:
     - name: 'Auto-assign issue'
       uses: pozil/auto-assign-issue@v1
       with:
-          repo-token: ${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}
-          assignees: holy-water
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: <<멘토ID>>
           numOfAssignee: 1
