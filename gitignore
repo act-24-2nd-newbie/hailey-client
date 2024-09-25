@@ -1,0 +1,49 @@
+# Node modules
+/node_modules/
+
+# Build output
+
+# TypeScript cache
+*.tsbuildinfo
+
+# dotenv environment variable files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and editor directories
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# macOS specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
+ehthumbs.db
+
+# Coverage directory
+/coverage/
+
+# Testing
+/jest-test-results/
+test-results/
+*.test.tsx
+*.spec.tsx
+
+# Misc
+*.tgz
+*.lock
+*.log
+
+# Build artifacts
+/build/
+dist/
+
+# Other
+*.bak
+*.tmp
