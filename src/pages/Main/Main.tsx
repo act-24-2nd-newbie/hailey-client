@@ -1,4 +1,5 @@
 import React from 'react';
+import TextField from '../../components/TextField';
 // import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 const Main = () => {
@@ -6,7 +7,12 @@ const Main = () => {
   // const location = useLocation();
   return (
     <div>
-      <h2> hello main page.</h2>
+      <h1> hello main page.</h1>
+      <h3>With Border</h3>
+      <TextField borderVisible={true} />
+
+      <h3>Without Border</h3>
+      <TextField borderVisible={false} />
     </div>
   );
 };

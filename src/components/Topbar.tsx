@@ -11,7 +11,7 @@ const Topbar = ({ title = 'My Todo' }: TopbarProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
 
   const handleLogoClick = () => {
-    navigate('/main');
+    navigate('/');
   };
 
   const handleLoginLogoutClick = () => {

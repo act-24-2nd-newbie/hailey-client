@@ -1,0 +1,62 @@
+#textfield-input-text:focus {
+    background-color: rgb(246, 244, 244);
+  }
+
+.textfield {
+    display: flex;              /* Use Flexbox for layout */
+    align-items: center;       /* Vertically center the items */
+    justify-content: space-between; /* Space items evenly */
+    padding: 10px;             /* Add some padding */
+    /*background-color: #f9f9f9; /* Light background color */
+  }
+
+
+
+  .textfield.border{
+    display: flex;              /* Use Flexbox for layout */
+    align-items: center;       /* Vertically center the items */
+    justify-content: space-between; /* Space items evenly */
+    padding: 10px;             /* Add some padding */
+    /*background-color: #f9f9f9; /* Light background color */
+    border: 1px solid #ccc;    /* Add a border to the text field */
+    border-radius: 1px;        /* Rounded corners */
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-left-style: none;
+  }
+  
+  .textfield-text {
+    display: flex;             /* Use Flexbox to align input and delete button */
+    align-items: center;       /* Vertically center the input and button */
+    flex-grow: 1;              /* Allow this section to grow and take available space */
+    margin-right: 10px;        /* Space between input and delete button */
+    
+  }
+  
+  .textfield-send {
+    display: flex;             /* Flexbox for the send button */
+    align-items: center;       /* Vertically center the send button */
+  }
+  
+  #textfield-input-text {
+    border: none;              /* Remove default border */
+    outline: none;             /* Remove outline on focus */
+    flex-grow: 1;              /* Allow input to grow */
+    padding: 5px;              /* Add padding to the input */
+    font-size: 16px;           /* Set font size */
+  }
+  
+  .textfield-button-delete,
+  .textfield-button-send {
+    width: 24px;               /* Set width for icons */
+    height: 24px;              /* Set height for icons */
+    cursor: pointer;           /* Change cursor to pointer on hover */
+    margin-left: 5px;          /* Space between icons */
+  }
+  
+  .textfield-button-delete:hover,
+  .textfield-button-send:hover {
+    opacity: 0.8;              /* Slightly dim icons on hover */
+  }
+  

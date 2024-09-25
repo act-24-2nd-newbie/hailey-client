@@ -13,7 +13,7 @@ function App() {
       {/* <Router /> */}
       <Routes>
         <Route path="/login" Component={Login}></Route>
-        <Route path="/main" Component={Main}></Route>
+        <Route path="/" Component={Main}></Route>
       </Routes>
     </div>
   );
