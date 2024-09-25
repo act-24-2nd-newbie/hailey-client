@@ -8,22 +8,18 @@ import type { TopbarProps } from '../type/Interface';
 
 const Topbar = ({ title = 'My Todo' }: TopbarProps) => {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); // 로그인 상태
 
   const handleLogoClick = () => {
-    navigate('/');
+    navigate('/Home');
   };
 
   const handleLoginLogoutClick = () => {
     if (isLoggedIn) {
       // 로그아웃 처리
-      sessionStorage.removeItem('token');
-      sessionStorage.removeItem('email');
-      sessionStorage.removeItem('role');
-      sessionStorage.removeItem('storeid');
       setIsLoggedIn(false);
     } else {
-      navigate('/login'); // 로그인 페이지로 이동
+      navigate('/'); // 로그인 페이지로 이동
     }
   };
 
