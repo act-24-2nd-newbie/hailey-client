@@ -1,7 +1,8 @@
 import React from 'react';
-// import TextField from '../../components/TextField';
+import '../../styles/Home.css';
+
 import { useLocation } from 'react-router-dom';
-// import { useNavigate, Link, useLocation } from 'react-router-dom';
+import TextField from '../../components/TextField';
 
 const Home = () => {
   // const navigate = useNavigate();
@@ -9,14 +10,17 @@ const Home = () => {
   // const { state } = location.state || {};
 
   return (
-    <div>
-      <h1> hello {location.state?.name}! </h1>
-      <h3> You've got {2} / 2 task(s) today! </h3>
-      {/* <h3>With Border</h3>
-      <TextField borderVisible={true} placeholder="" onSend={() => {}} />
-
-      <h3>Without Border</h3>
-      <TextField borderVisible={false} placeholder="" onSend={() => {}} /> */}
+    <div className="home-page">
+      <div className="info">
+        <p> hello {location.state?.name}! </p>
+        <p> You've got</p>
+        <h1> {2} / 2 </h1>
+        <p> tasks today!</p>
+        <TextField borderVisible={true} placeholder="Enter your task" onSend={() => {}} />
+      </div>
+      <div className="task">
+        <p>task part </p>
+      </div>
     </div>
   );
 };

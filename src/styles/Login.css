@@ -1,0 +1,9 @@
+.login-page {
+
+    flex-grow: 1;       
+    display: flex;               /* Use flexbox for page contents */
+    flex-direction: column;      /* Allow vertical stacking of elements */
+    align-items: flex-start;     /* Align items to the left */
+    margin-top: 100px;
+    padding-left: 100px;
+}

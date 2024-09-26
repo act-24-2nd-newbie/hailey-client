@@ -1,0 +1,17 @@
+#root {
+    /* max-width: 1280px; */
+
+    /* padding: 2px; */
+    text-align: left;
+    min-height: 100vh;
+}
+  
+.container {
+
+    /* padding-left: 50px; */
+    display: flex;               /* Use flexbox for layout */
+    flex-direction: column;      /* Arrange children in a column */
+    height: auto;                /* Make app fill the full height */
+    width: auto;
+    min-height: 100vh;
+}
