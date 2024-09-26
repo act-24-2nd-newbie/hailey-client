@@ -32,7 +32,8 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <p>Welome</p>
+      <p> Welcome Newbie!!</p>
+      <p> MyTodo makes it easy to stay organized and manage your life.</p>
       <h1> What is your name? </h1>
       <TextField borderVisible={true} placeholder="Input your name" onSend={handleNameSend} />
     </div>
