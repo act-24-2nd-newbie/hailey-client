@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import ic_delete from '../../public/ic_delete.png';
-import ic_send_active from '../../public/ic_send_active.png';
-import ic_send_inactive from '../../public/ic_send_inactive.png';
+import ic_delete from '../assets/ic_delete.png';
+import ic_send_active from '../assets/ic_send_active.png';
+import ic_send_inactive from '../assets/ic_send_inactive.png';
 import '../styles/TextField.css';
 import type { TextFieldProps } from '../type/Interface';
 
@@ -13,24 +13,24 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
   const handleDeleteClick = () => {
     setInputValue('');
     inputRef.current?.focus();
-    // setIsFocused(true);
   };
 
   const handleSendClick = () => {
+    if (inputValue.length === 0) inputRef.current?.blur();
     if (onSend) {
       onSend(inputValue);
     }
+
     setInputValue('');
-    inputRef.current?.focus();
   };
 
-  const activeEnter = (e) => {
+  const activeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleSendClick();
     }
   };
 
-  const isInputActive = isFocused && inputValue.length > 0;
+  const isInputActive = isFocused || inputValue.length > 0;
 
   return (
     <div className={`textfield ${borderVisible ? 'border' : ''}`}>
@@ -45,10 +45,8 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
             setInputValue(e.target.value);
           }}
           onFocus={() => setIsFocused(true)} // 포커스 상태 true
-          onBlur={() => {
-            setIsFocused(false);
-          }}
-          onKeyDown={(e) => activeEnter(e)}
+          onBlur={() => setIsFocused(false)}
+          onKeyDown={activeEnter}
         />
         {inputValue.length > 0 && (
           <img className="textfield-button-delete" src={ic_delete} onClick={handleDeleteClick} />
@@ -57,7 +55,7 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
       <div className="textfield-send">
         <img
           className={`textfield-button-send ${isInputActive ? 'active' : ''}`}
-          src={isInputActive ? ic_send_active : ic_send_inactive}
+          src={isFocused ? ic_send_active : ic_send_inactive}
           onClick={handleSendClick}
         />
       </div>

@@ -1,15 +1,15 @@
 import React from 'react';
 import '../../styles/Home.css';
-import illust_empty from '../../../public/illust_empty.png';
+
 import { useLocation } from 'react-router-dom';
 import TextField from '../../components/TextField';
-import List from '../../components/List';
+import Task from '../../components/Task';
 import { useTask } from '../../context/TaskContext';
 
 const Home = () => {
-  const location = useLocation();
-  const { taskCount } = useTask();
   // const navigate = useNavigate();
+  const location = useLocation();
+  const { tasks, setTasks } = useTask();
   // const { state } = location.state || {};
 
   return (
@@ -17,34 +17,20 @@ const Home = () => {
       <div className="info">
         <p> hello {location.state?.name}! </p>
         <p> You've got</p>
-        <h1> {taskCount} / 2 </h1>
-        <p> task{taskCount > 1 ? 's' : ''} today!</p>
+        <h1> {2} / 2 </h1>
+        <p> tasks today!</p>
         <TextField
           borderVisible={true}
           placeholder="Enter your task"
-          onSend={(task) => {
-            console.log(task);
-            // api 호출
+          onSend={(taskTitle) => {
+            const newTask: Task = { id: tasks.length + 1, title: taskTitle };
+            setTasks((prevTasks) => [...prevTasks, newTask]);
+            // #6 api 호출
+            console.log(tasks.length);
           }}
         />
       </div>
-
-      <div className="task">
-        <div className="task-info-container">
-          <div className="List">
-            <List title="task-info" data={['Oldest', 'Latest']} />
-          </div>
-          <div className="button-container">
-            <button className="button">Clear All</button>
-          </div>
-        </div>
-        <div className="task-img-container">
-          <img className="task-img" src={illust_empty} />
-        </div>
-        <div className="task-text-container">
-          <p className="task-text">{taskCount > 0 ? `task :  ${taskCount}` : 'There is no task registered.'}</p>
-        </div>
-      </div>
+      <Task />
     </div>
   );
 };

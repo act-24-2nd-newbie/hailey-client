@@ -15,5 +15,10 @@ export interface ListProps {
 
 export interface ButtonProps {
   title: string;
-  data: string;
+}
+
+export interface Task {
+  id: number; // 또는 number
+  title: string;
+  // 필요에 따라 다른 프로퍼티 추가
 }
