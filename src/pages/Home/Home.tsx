@@ -1,12 +1,14 @@
 import React from 'react';
 import '../../styles/Home.css';
-
+import illust_empty from '../../../public/illust_empty.png';
 import { useLocation } from 'react-router-dom';
 import TextField from '../../components/TextField';
+import { useTask } from '../../context/TaskContext';
 
 const Home = () => {
-  // const navigate = useNavigate();
   const location = useLocation();
+  const { taskCount } = useTask();
+  // const navigate = useNavigate();
   // const { state } = location.state || {};
 
   return (
@@ -14,12 +16,14 @@ const Home = () => {
       <div className="info">
         <p> hello {location.state?.name}! </p>
         <p> You've got</p>
-        <h1> {2} / 2 </h1>
-        <p> tasks today!</p>
+        <h1> {taskCount} / 2 </h1>
+        <p> task{taskCount > 1 ? 's' : ''} today!</p>
         <TextField borderVisible={true} placeholder="Enter your task" onSend={() => {}} />
       </div>
+
       <div className="task">
-        <p>task part </p>
+        <img className="task-img" src={illust_empty} />
+        <p className="task-text">{taskCount > 0 ? `task :  ${taskCount}` : 'There is no task registered.'}</p>
       </div>
     </div>
   );

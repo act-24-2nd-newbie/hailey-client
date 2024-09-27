@@ -29,7 +29,7 @@
     align-items: center;       /* Vertically center the input and button */
     flex-grow: 1;              /* Allow this section to grow and take available space */
     margin-right: 10px;        /* Space between input and delete button */
-    border: 1px solid #ccc;    /* Add a border to the text field */
+    border: 2px solid #ccc;    /* Add a border to the text field */
     border-radius: 1px;        /* Rounded corners */
     border-top-style: none;
     border-right-style: none;
@@ -41,12 +41,14 @@
     align-items: center;       /* Vertically center the input and button */
     flex-grow: 1;              /* Allow this section to grow and take available space */
     margin-right: 10px;        /* Space between input and delete button */
-    border: 2px solid #006eff28;    /* Add a border to the text field */
+    border: 2px solid rgba(42, 130, 240, 1);;    /* Add a border to the text field */
     border-radius: 1px;        /* Rounded corners */
     border-top-style: none;
     border-right-style: none;
     border-bottom-style: solid;
     border-left-style: none;
+    
+
   }
   
   .textfield-send {
@@ -68,13 +70,5 @@
     height: 24px;              /* Set height for icons */
     cursor: pointer;           /* Change cursor to pointer on hover */
     margin-left: 5px;          /* Space between icons */
-  }
-  
-  .textfield-button-delete:hover,
-  .textfield-button-send:hover {
-    opacity: 0.8;              /* Slightly dim icons on hover */
-  }
-  
-  .textfield-button-send.active {
-     filter: invert(47%) sepia(91%) saturate(5000%) hue-rotate(186deg) brightness(100%) contrast(92%);
+
   }
