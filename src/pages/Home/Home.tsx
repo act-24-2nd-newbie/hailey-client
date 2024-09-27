@@ -19,7 +19,14 @@ const Home = () => {
         <p> You've got</p>
         <h1> {taskCount} / 2 </h1>
         <p> task{taskCount > 1 ? 's' : ''} today!</p>
-        <TextField borderVisible={true} placeholder="Enter your task" onSend={() => {}} />
+        <TextField
+          borderVisible={true}
+          placeholder="Enter your task"
+          onSend={(task) => {
+            console.log(task);
+            // api 호출
+          }}
+        />
       </div>
 
       <div className="task">
