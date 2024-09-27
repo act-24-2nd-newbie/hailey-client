@@ -41,6 +41,8 @@
   }
   
   .login {
-
-
+    border-color: white;
+    border-radius: 10px;
+    background-color: #6C77A7;
+    color: white;
   }

@@ -1,22 +1,30 @@
 import React from 'react';
-// import TextField from '../../components/TextField';
+import '../../styles/Home.css';
+import illust_empty from '../../../public/illust_empty.png';
 import { useLocation } from 'react-router-dom';
-// import { useNavigate, Link, useLocation } from 'react-router-dom';
+import TextField from '../../components/TextField';
+import { useTask } from '../../context/TaskContext';
 
 const Home = () => {
-  // const navigate = useNavigate();
   const location = useLocation();
+  const { taskCount } = useTask();
+  // const navigate = useNavigate();
   // const { state } = location.state || {};
 
   return (
-    <div>
-      <h1> hello {location.state?.name}! </h1>
-      <h3> You've got {2} / 2 task(s) today! </h3>
-      {/* <h3>With Border</h3>
-      <TextField borderVisible={true} placeholder="" onSend={() => {}} />
+    <div className="home-page">
+      <div className="info">
+        <p> hello {location.state?.name}! </p>
+        <p> You've got</p>
+        <h1> {taskCount} / 2 </h1>
+        <p> task{taskCount > 1 ? 's' : ''} today!</p>
+        <TextField borderVisible={true} placeholder="Enter your task" onSend={() => {}} />
+      </div>
 
-      <h3>Without Border</h3>
-      <TextField borderVisible={false} placeholder="" onSend={() => {}} /> */}
+      <div className="task">
+        <img className="task-img" src={illust_empty} />
+        <p className="task-text">{taskCount > 0 ? `task :  ${taskCount}` : 'There is no task registered.'}</p>
+      </div>
     </div>
   );
 };
