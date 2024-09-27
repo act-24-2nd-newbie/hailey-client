@@ -17,7 +17,6 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
   };
 
   const handleSendClick = () => {
-    console.log({ inputValue });
     if (onSend) {
       onSend(inputValue);
     }
@@ -25,7 +24,13 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
     inputRef.current?.focus();
   };
 
-  const isInputActive = isFocused || inputValue.length > 0;
+  const activeEnter = (e) => {
+    if (e.key === 'Enter') {
+      handleSendClick();
+    }
+  };
+
+  const isInputActive = isFocused && inputValue.length > 0;
 
   return (
     <div className={`textfield ${borderVisible ? 'border' : ''}`}>
@@ -41,10 +46,9 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
           }}
           onFocus={() => setIsFocused(true)} // 포커스 상태 true
           onBlur={() => {
-            if (inputValue.length === 0) {
-              setIsFocused(false);
-            }
+            setIsFocused(false);
           }}
+          onKeyDown={(e) => activeEnter(e)}
         />
         {inputValue.length > 0 && (
           <img className="textfield-button-delete" src={ic_delete} onClick={handleDeleteClick} />
@@ -53,7 +57,7 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
       <div className="textfield-send">
         <img
           className={`textfield-button-send ${isInputActive ? 'active' : ''}`}
-          src={inputValue.length > 0 ? ic_send_active : ic_send_inactive}
+          src={isInputActive ? ic_send_active : ic_send_inactive}
           onClick={handleSendClick}
         />
       </div>
