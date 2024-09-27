@@ -7,11 +7,11 @@
 }
   
 .container {
-
+    overflow-y: hidden;
     /* padding-left: 50px; */
     display: flex;               /* Use flexbox for layout */
     flex-direction: column;      /* Arrange children in a column */
-    height: auto;                /* Make app fill the full height */
+    max-height: 90vh;                
     width: auto;
     min-height: 100vh;
 }

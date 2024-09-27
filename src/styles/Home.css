@@ -7,61 +7,46 @@
     
 }
 .info {
+  
     padding-left: 100px;
-    height: 40%;
-    min-height: 100%;
+
 }
 
-.task {
+.task-container {
+    overflow-y: scroll; 
+    max-height: 100%;
+  
     flex-grow: 1;
-    display: flex;           
-    flex-direction: column;  
-    align-items: center;  
     background: rgba(244, 244, 244, 1);
     
-    height: 100vh;
-    margin-top: 20  px;  
-}
+    margin-top: 20px; 
+    padding-top: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
 
-.task-info, 
-.task-img-container, 
-.task-text-container {
-  display: flex;
-  justify-content: center; /* 가로 정렬 (가운데 정렬) */
-  align-items: center;     /* 세로 정렬 (가운데 정렬) */
-}
-.task-info-container {
-    width: 100vw;
- 
-    flex-basis: auto;
-    /* //flex: 1 1 10%;           flex-grow: 1, flex-shrink: 1, 높이는 10% */
-    display: flex;
-    align-items: center; 
-  }
-  .task-info-container .List {
-    flex: 1;
-    justify-content: flex-start;
-    align-items: left; 
-  }
-
-  .task-info-container .button-container {
-    flex: 1;
-    justify-content: flex-end;
-    align-items: right;
-  }
-  
-  .task-img-container {
-    margin-top: 80px;
-    flex-basis: auto;
-    /* //flex: 1 1 40%;           높이는 40% */
+    display: grid;    
+    grid-template-columns: 100px auto 100px;
+    grid-template-rows: 100px auto     
     
-  }
-  
-  .task-text-container {
-    flex-basis: auto;
-    /* flex-grow: 1; */
-  }
-  
+     
+}
+
+.task-sort {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.task-clear {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+
+.task-list {
+  grid-column-start: 1;
+	grid-column-end: 4;
+  margin-top: 20px;
+  margin-bottom: 110px; */
+}
 
 
 p {

@@ -1,10 +1,57 @@
-.task-container {
-    flex-grow: 1;
-    display: flex;           
-    flex-direction: column;  
-    align-items: center;  
-    background: rgba(244, 244, 244, 1);
+.task-box {
+    background-color: white;
+    border-radius: 4px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    width: Fixed (1,160px)px;
+    height: Fixed (60px)px;
+    padding: 15px 30px 15px 30px;
     
-    height: 100vh;
-    margin-top: 20px;  
+    gap: 12px;
+
+    display: grid;
+    grid-template-columns: 30px auto auto 35px;
+    
+    align-items: center;
+    
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    
+}
+
+.checkbox:hover {
+
+}
+
+
+.content {
+    /* margin-left: -500px; */
+}
+
+
+.date {
+    text-align: end;
+    font-size: 14px;
+}
+
+.image-container {
+   
+    width: 30px; /* 이미지의 너비 */
+    height: 30px; /* 이미지의 높이 */
+    background-image: url('../assets/btn_remove.png'); /* 기본 이미지 */
+    background-size: cover; /* 이미지 크기 조정 */
+    
+}
+
+.image-container:hover {
+    background-image: url('../assets/btn_remove_hover.png'); /* hover 시 변경할 이미지 */
+}
+
+.remove {
+    display: none; /* img 태그는 숨깁니다 */
 }

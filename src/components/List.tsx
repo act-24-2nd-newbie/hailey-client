@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import type { ListProps } from '../type/Interface';
 
-const List = ({ title, data }: ListProps) => {
+const List = ({ title, data, onSelect }: ListProps) => {
   const [selectedValue, setSelectedValue] = useState<string>(data[0]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedValue(event.target.value);
-    console.log(selectedValue);
+  const handleSelectChange = (value: string) => {
+    setSelectedValue(value);
+    setIsOpen(false);
+    onSelect(selectedValue);
   };
 
   return (
     <div className={title}>
-      <select value={selectedValue} onChange={handleSelectChange}>
-        {data.map((value, index) => (
-          <option key={index} value={value}>
-            {value}
-          </option>
-        ))}
-      </select>
-      {/* <p> 선택된 값 : {selectedValue} </p> */}
+      <button onClick={() => setIsOpen(!isOpen)}>
+        {selectedValue} {/* Display the currently selected value */}
+      </button>
+      {isOpen && (
+        <ul className="dropdown-list">
+          {data.map((value, index) => (
+            <li key={index} onClick={() => handleSelectChange(value)}>
+              {value}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
