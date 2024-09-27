@@ -3,6 +3,7 @@ import '../../styles/Home.css';
 import illust_empty from '../../../public/illust_empty.png';
 import { useLocation } from 'react-router-dom';
 import TextField from '../../components/TextField';
+import List from '../../components/List';
 import { useTask } from '../../context/TaskContext';
 
 const Home = () => {
@@ -22,8 +23,20 @@ const Home = () => {
       </div>
 
       <div className="task">
-        <img className="task-img" src={illust_empty} />
-        <p className="task-text">{taskCount > 0 ? `task :  ${taskCount}` : 'There is no task registered.'}</p>
+        <div className="task-info-container">
+          <div className="List">
+            <List title="task-info" data={['Oldest', 'Latest']} />
+          </div>
+          <div className="button-container">
+            <button className="button">Clear All</button>
+          </div>
+        </div>
+        <div className="task-img-container">
+          <img className="task-img" src={illust_empty} />
+        </div>
+        <div className="task-text-container">
+          <p className="task-text">{taskCount > 0 ? `task :  ${taskCount}` : 'There is no task registered.'}</p>
+        </div>
       </div>
     </div>
   );

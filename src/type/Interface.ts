@@ -7,3 +7,13 @@ export interface TextFieldProps {
   placeholder: string;
   onSend: (value: string) => void;
 }
+
+export interface ListProps {
+  title: string;
+  data: string[];
+}
+
+export interface ButtonProps {
+  title: string;
+  data: string;
+}

@@ -18,21 +18,51 @@
     flex-direction: column;  
     align-items: center;  
     background: rgba(244, 244, 244, 1);
-    min-height: 100%;
-    margin-top: 20px;  
-}
-
-.task-img {
     
-    margin-top: 75px;
-    width: 20%;
-    height: 20%;
-    /* height: auto; */
+    height: 100vh;
+    margin-top: 20  px;  
 }
 
-.task-text {
-    margin-top: 10px;       /* 텍스트와 이미지 간의 간격 추가 */
+.task-info, 
+.task-img-container, 
+.task-text-container {
+  display: flex;
+  justify-content: center; /* 가로 정렬 (가운데 정렬) */
+  align-items: center;     /* 세로 정렬 (가운데 정렬) */
 }
+.task-info-container {
+    width: 100vw;
+ 
+    flex-basis: auto;
+    /* //flex: 1 1 10%;           flex-grow: 1, flex-shrink: 1, 높이는 10% */
+    display: flex;
+    align-items: center; 
+  }
+  .task-info-container .List {
+    flex: 1;
+    justify-content: flex-start;
+    align-items: left; 
+  }
+
+  .task-info-container .button-container {
+    flex: 1;
+    justify-content: flex-end;
+    align-items: right;
+  }
+  
+  .task-img-container {
+    margin-top: 80px;
+    flex-basis: auto;
+    /* //flex: 1 1 40%;           높이는 40% */
+    
+  }
+  
+  .task-text-container {
+    flex-basis: auto;
+    /* flex-grow: 1; */
+  }
+  
+
 
 p {
     font-family: Roboto;
