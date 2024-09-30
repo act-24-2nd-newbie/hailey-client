@@ -30,7 +30,9 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
     }
   };
 
-  const isInputActive = isFocused || inputValue.length > 0;
+
+
+  const isInputActive = isFocused && inputValue.length > 0;
 
   return (
     <div className={`textfield ${borderVisible ? 'border' : ''}`}>
@@ -45,8 +47,10 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
             setInputValue(e.target.value);
           }}
           onFocus={() => setIsFocused(true)} // 포커스 상태 true
+
           onBlur={() => setIsFocused(false)}
           onKeyDown={activeEnter}
+
         />
         {inputValue.length > 0 && (
           <img className="textfield-button-delete" src={ic_delete} onClick={handleDeleteClick} />
