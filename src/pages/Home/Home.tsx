@@ -10,6 +10,8 @@ import TaskField from '../../components/TaskField';
 import type { Task } from '../../type/Interface';
 import { useTask } from '../../context/TaskContext';
 
+import illust_empty from '../../assets/illust_empty.png';
+
 const Home = () => {
   const location = useLocation();
   const { tasks, setTasks, sortedTasks, setSortedTasks, sortOrder, setSortOrder } = useTask();
@@ -63,9 +65,14 @@ const Home = () => {
         </div>
 
         <div className="task-list">
-          {tasks.map((task: Task) => (
-            <TaskField id={task.id} contents={task.contents} date={task.modified_date} />
-          ))}
+          {tasks.length === 0 ? (
+            <div className="no-task">
+              <img className="no-task-img" src={illust_empty} />
+              <p className="no-task-text"> There is no task registered. </p>
+            </div>
+          ) : (
+            tasks.map((task: Task) => <TaskField id={task.id} contents={task.contents} date={task.modified_date} />)
+          )}
         </div>
       </div>
     </div>

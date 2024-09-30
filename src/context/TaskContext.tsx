@@ -2,9 +2,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Task } from '../type/Interface';
 
 const preTasks: Task[] = [
-  { id: 1, contents: 'a', is_done: true, modified_date: new Date(), created_date: new Date() },
-  { id: 2, contents: 'b', is_done: true, modified_date: new Date(), created_date: new Date() },
-  { id: 3, contents: 'c', is_done: true, modified_date: new Date(), created_date: new Date() },
+  // { id: 1, contents: 'a', is_done: true, modified_date: new Date(), created_date: new Date() },
+  // { id: 2, contents: 'b', is_done: true, modified_date: new Date(), created_date: new Date() },
+  // { id: 3, contents: 'c', is_done: true, modified_date: new Date(), created_date: new Date() },
 ];
 
 interface TaskContextType {
