@@ -1,48 +1,38 @@
-#textfield-text:focus {
-    /* background-color: rgb(246, 244, 244); */
-    color: blue;
-  }
-
 .textfield {
-    display: flex;              /* Use Flexbox for layout */
-    align-items: center;       /* Vertically center the items */
-    justify-content: space-between; /* Space items evenly */
-    padding: 10px;             /* Add some padding */
-    /*background-color: #f9f9f9; /* Light background color */
-    width: 50%;
+    display: flex;             
+    align-items: center;       
+    justify-content: space-between; 
+    position: relative;
+    height: 32px;
   }
-
-
 
 .textfield.border{
-  display: flex;              /* Use Flexbox for layout */
-  align-items: center;       /* Vertically center the items */
-  justify-content: space-between; /* Space items evenly */
-  padding: 10px;             /* Add some padding */
-  /*background-color: #f9f9f9; /* Light background color */
-  
-  width: 50%;
+  display: flex;              
+  align-items: center;     
+  justify-content: space-between; 
+
+  height: 32px;
 }
   
   .textfield-text {
-    display: flex;             /* Use Flexbox to align input and delete button */
-    align-items: center;       /* Vertically center the input and button */
-    flex-grow: 1;              /* Allow this section to grow and take available space */
-    margin-right: 10px;        /* Space between input and delete button */
-    border: 2px solid #ccc;    /* Add a border to the text field */
-    border-radius: 1px;        /* Rounded corners */
+    display: flex;        
+    align-items: center;      
+    flex-grow: 1;    
+    height: 32px;
+    border: 2px solid #ccc;    
+    border-radius: 1px;      
     border-top-style: none;
     border-right-style: none;
     border-bottom-style: solid;
     border-left-style: none;
   }
   .textfield-text.focus {
-    display: flex;             /* Use Flexbox to align input and delete button */
-    align-items: center;       /* Vertically center the input and button */
-    flex-grow: 1;              /* Allow this section to grow and take available space */
-    margin-right: 10px;        /* Space between input and delete button */
-    border: 2px solid rgba(42, 130, 240, 1);;    /* Add a border to the text field */
-    border-radius: 1px;        /* Rounded corners */
+    display: flex;            
+    align-items: center;      
+    flex-grow: 1;             
+
+    border: 2px solid rgba(42, 130, 240, 1);;    
+    border-radius: 1px;       
     border-top-style: none;
     border-right-style: none;
     border-bottom-style: solid;
@@ -60,7 +50,6 @@
     border: none;              /* Remove default border */
     outline: none;             /* Remove outline on focus */
     flex-grow: 1;              /* Allow input to grow */
-    padding: 5px;              /* Add padding to the input */
     font-size: 16px;           /* Set font size */
   }
   

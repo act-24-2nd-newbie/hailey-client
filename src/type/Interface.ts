@@ -12,6 +12,9 @@ export interface TextFieldProps {
   borderVisible?: boolean; // Optional prop to control border visibility
   placeholder: string;
   onSend: (value: string) => void;
+  width: number;
+  top: number;
+  left: number;
 }
 
 export interface ListProps {

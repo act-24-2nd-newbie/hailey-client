@@ -1,28 +1,21 @@
 .home-page {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 100px;
-    min-height: 100vh;
+    /* display: flex;
+    flex-direction: column; */
+
     
 }
 .info {
-  
-    padding-left: 100px;
 
 }
 
 .task-container {
     overflow-y: scroll; 
-    max-height: 100%;
-  
-    flex-grow: 1;
+    max-height: 1000px;
     background: rgba(244, 244, 244, 1);
     
-    margin-top: 20px; 
     padding-top: 30px;
-    padding-left: 100px;
-    padding-right: 100px;
+    /* padding-left: 110px; */
+    /* padding-right: 100px; */
 
     display: grid;    
     grid-template-columns: 100px auto 100px;

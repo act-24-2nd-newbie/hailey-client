@@ -5,7 +5,7 @@ import ic_send_inactive from '../assets/ic_send_inactive.png';
 import '../styles/TextField.css';
 import type { TextFieldProps } from '../type/Interface';
 
-const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps) => {
+const TextField = ({ borderVisible = true, placeholder, onSend, width, top, left }: TextFieldProps) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -30,12 +30,10 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
     }
   };
 
-
-
   const isInputActive = isFocused && inputValue.length > 0;
 
   return (
-    <div className={`textfield ${borderVisible ? 'border' : ''}`}>
+    <div className={`textfield ${borderVisible ? 'border' : ''}`} style={{ width: width, top: top, left: left }}>
       <div className={`textfield-text ${isFocused ? 'focus' : ''}`}>
         <input
           id="textfield-input-text"
@@ -47,10 +45,8 @@ const TextField = ({ borderVisible = true, placeholder, onSend }: TextFieldProps
             setInputValue(e.target.value);
           }}
           onFocus={() => setIsFocused(true)} // 포커스 상태 true
-
           onBlur={() => setIsFocused(false)}
           onKeyDown={activeEnter}
-
         />
         {inputValue.length > 0 && (
           <img className="textfield-button-delete" src={ic_delete} onClick={handleDeleteClick} />

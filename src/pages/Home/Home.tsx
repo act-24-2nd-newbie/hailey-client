@@ -33,12 +33,71 @@ const Home = () => {
   return (
     <div className="home-page">
       <div className="info">
-        <p> hello {location.state?.name}! </p>
-        <p> You've got</p>
-        <h1> {2} / 2 </h1>
-        <p> tasks today!</p>
+        <p
+          style={{
+            position: 'absolute',
+            top: '72px',
+            left: '60px',
+            fontFamily: 'Roboto',
+            fontSize: '24px',
+            fontWeight: '400',
+            lineHeight: '36px',
+            textAlign: 'left',
+          }}
+        >
+          {' '}
+          hello {location.state?.name}!{' '}
+        </p>
+        <p
+          style={{
+            position: 'absolute',
+            top: '124px',
+            left: '60px',
+            fontFamily: 'Roboto',
+            fontSize: '24px',
+            fontWeight: '400',
+            lineHeight: '36px',
+            textAlign: 'left',
+          }}
+        >
+          {' '}
+          You've got
+        </p>
+        <h1
+          style={{
+            position: 'absolute',
+            top: '160px',
+            left: '60px',
+            fontFamily: 'Roboto',
+            fontSize: '48px',
+            fontWeight: '700',
+            lineHeight: '72px',
+            textAlign: 'left',
+          }}
+        >
+          {' '}
+          {2} / 2{' '}
+        </h1>
+        <p
+          style={{
+            position: 'absolute',
+            top: '232px',
+            left: '60px',
+            fontFamily: 'Roboto',
+            fontSize: '24px',
+            fontWeight: '400',
+            lineHeight: '36px',
+            textAlign: 'left',
+          }}
+        >
+          {' '}
+          tasks today!
+        </p>
 
         <TextField
+          width={1156}
+          top={284}
+          left={60}
           borderVisible={true}
           placeholder="Enter your task"
           onSend={(taskTitle) => {
@@ -56,8 +115,11 @@ const Home = () => {
         />
       </div>
 
-      <div className="task-container">
-        <div className="task-sort">
+      <div className="task-container" style={{ top: '425px', position: 'absolute', width: '1920px', height: '610px' }}>
+        <div
+          className="task-sort"
+          style={{ width: '180px', height: '60px', top: '364px', left: '52px', position: 'absolute' }}
+        >
           <List title={'task'} data={['oldest', 'latest']} onSelect={handleSortChange} />
         </div>
         <div className="task-clear">

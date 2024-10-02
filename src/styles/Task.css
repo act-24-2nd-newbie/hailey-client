@@ -2,14 +2,14 @@
     background-color: white;
     border-radius: 4px;
 
-    margin-top: 10px;
+    
     margin-bottom: 10px;
 
-    width: Fixed (1,160px)px;
-    height: Fixed (60px)px;
-    padding: 15px 30px 15px 30px;
+    width: 1700px;
+    height: 70px;
+
     
-    gap: 12px;
+    gap: 15px;
 
     display: grid;
     grid-template-columns: 50px auto auto 35px;

@@ -32,10 +32,34 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <p> Welcome Newbie!!</p>
-      <p> MyTodo makes it easy to stay organized and manage your life.</p>
-      <h1> What is your name? </h1>
-      <TextField borderVisible={true} placeholder="Input your name" onSend={handleNameSend} />
+      <p
+        style={{
+          width: '800px',
+          top: '108px',
+          left: '120px',
+          position: 'absolute',
+          lineHeight: '36px',
+          fontFamily: 'Roboto',
+          fontSize: '24px',
+          color: 'rgba(44, 62, 80, 1)',
+          fontWeight: '400',
+        }}
+      >
+        Welcome Newbie!! <br /> MyTodo makes it easy to stay organized and manage your life.
+      </p>
+
+      <h1 style={{ width: '663px', height: '72px', top: '204px', left: '120px', position: 'absolute' }}>
+        {' '}
+        What is your name?{' '}
+      </h1>
+      <TextField
+        left={120}
+        top={292}
+        width={680}
+        borderVisible={true}
+        placeholder="Input your name"
+        onSend={handleNameSend}
+      />
     </div>
   );
 };
