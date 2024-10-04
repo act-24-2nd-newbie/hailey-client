@@ -1,53 +1,48 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Task } from '../type/Interface';
-
-const preTasks: Task[] = [
-  // { id: 1, contents: 'a', is_done: true, modified_date: new Date(), created_date: new Date() },
-  // { id: 2, contents: 'b', is_done: true, modified_date: new Date(), created_date: new Date() },
-  // { id: 3, contents: 'c', is_done: true, modified_date: new Date(), created_date: new Date() },
-];
+import axios from 'axios';
 
 interface TaskContextType {
   sortOrder: string;
   tasks: Task[];
-  sortedTasks: Task[];
-  // taskCount: number;
+  // sortedTasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>; // This is the function to set tasks
-  setSortedTasks: React.Dispatch<React.SetStateAction<Task[]>>; // This is the function to set tasks
+  // setSortedTasks: React.Dispatch<React.SetStateAction<Task[]>>; // This is the function to set tasks
   setSortOrder: React.Dispatch<React.SetStateAction<string>>;
-  // addTask: (task: Task) => void; // Example for adding a task
-  // removeTask: (taskId: number) => void;
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
 export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // const [taskCount, setTaskCount] = useState<number>(0);
-  const [tasks, setTasks] = useState<Task[] | []>(preTasks);
-  const [sortedTasks, setSortedTasks] = useState<Task[] | []>(preTasks);
+  const [tasks, setTasks] = useState<Task[] | []>([]);
+  // const [sortedTasks, setSortedTasks] = useState<Task[] | []>(preTasks);
   const [sortOrder, setSortOrder] = useState<string>('oldest');
 
-  // useEffect(() => {
-  //   const sorted = [...tasks].sort((a, b) => {
-  //     if (sortOrder === 'oldest') {
-  //       return new Date(a.created_date).getTime() - new Date(b.created_date).getTime();
-  //     } else {
-  //       return new Date(b.created_date).getTime() - new Date(a.created_date).getTime();
-  //     }
-  //   });
-  //   setSortedTasks(sorted);
-  // }, [tasks, sortOrder]);
+  const fetchTasks = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/tasks'); // 서버 API 엔드포인트
+      // console.log(response.data[0].modifiedDate);
 
-  // const plus = () => setTaskCount(taskCount + 1);
-  // const minus = () => setTaskCount(taskCount - 1);
-  // const login = () => setIsLoggedIn(true);
-  // const logout = () => setIsLoggedIn(true);
+      const formattedTasks: Task[] = response.data.map((task: Task) => ({
+        id: task.id,
+        contents: task.contents,
+        is_done: task.done, // 'done'을 'is_done'으로 변환
+        created_date: task.createDate, // 날짜 문자열
+        modified_date: task.modifiedDate, // 날짜 문자열
+      }));
 
-  return (
-    <TaskContext.Provider value={{ tasks, setTasks, sortedTasks, setSortedTasks, sortOrder, setSortOrder }}>
-      {children}
-    </TaskContext.Provider>
-  );
+      // 상태 업데이트
+      setTasks(formattedTasks);
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks(); // 컴포넌트가 마운트될 때 초기 데이터 가져오기
+  }, []);
+
+  return <TaskContext.Provider value={{ tasks, setTasks, sortOrder, setSortOrder }}>{children}</TaskContext.Provider>;
 };
 
 export const useTask = () => {

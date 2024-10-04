@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import '../styles/Topbar.css';
 
 const CurrentDateTime = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -24,10 +23,19 @@ const CurrentDateTime = () => {
   };
 
   return (
-    <div>
-      <p className="date">{formatDate(currentDateTime)}</p>
-      {/* <p>{currentDateTime.toLocaleTimeString()}</p> */}
-    </div>
+    <p
+      style={{
+        color: 'white',
+        fontFamily: 'Roboto',
+
+        fontSize: '16px',
+        fontWeight: '700',
+        lineHeight: '18.75px',
+        width: '80px',
+      }}
+    >
+      {formatDate(currentDateTime)}
+    </p>
   );
 };
 

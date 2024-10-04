@@ -1,15 +1,22 @@
 .home-page {
     
 }
-.info {
-
+.info p{
+  position: absolute;
+  left: 60px;
+  font-family: Roboto;
+  font-size: 24px;
+font-weight: 400;
+line-height: 36px;
+text-align: left;
 }
 
 .task-container {
     overflow-y: scroll; 
     background: rgba(244, 244, 244, 1);
 
-
+    position: relative;
+    top: 320px;
     /* width: 1920px;  */
     height: 700px;
 
@@ -20,7 +27,7 @@
 }
 
 .task-selector {
-  /* position: absolute; */
+  
 
   display: flex;
   justify-content: space-between;
@@ -34,9 +41,24 @@
 
 .task-clear {
   position: relative;
-  width: 80px;
-  height: 40px;
-  border: 'none'
+  
+  width: 120px;
+  
+  border: 0;
+  background: rgba(244, 244, 244);
+
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 4px;
+
+}
+
+.task-clear:hover {
+  background: rgba(0, 0, 0, 0.08);
+
 }
 
 .task-list {
@@ -52,14 +74,14 @@
 }
 
 
-p {
+/* p {
     font-family: Roboto;
     font-size: 24px;
     font-weight: 400;
     text-align: left;
     line-height: 20px;
     
-}
+} */
 
 h1 {
     font-family: Roboto;

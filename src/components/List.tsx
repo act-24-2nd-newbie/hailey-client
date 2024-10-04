@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { ListProps } from '../type/Interface';
+import '../styles/List.css';
 
-const List = ({ title, data, onSelect }: ListProps) => {
+const List = ({ data, onSelect }: ListProps) => {
   const [selectedValue, setSelectedValue] = useState<string>(data[0]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -12,18 +13,39 @@ const List = ({ title, data, onSelect }: ListProps) => {
   };
 
   return (
-    <div className={'sort'} style={{ position: 'relative' }}>
-      <button style={{ width: '120px', height: '40px', border: 'none' }} onClick={() => setIsOpen(!isOpen)}>
+    <div className="dropdown">
+      <button
+        className="dropdown-button"
+        style={{
+          borderRadius: isOpen ? '4px 4px 0 0' : '4px',
+          boxShadow: isOpen ? '0px 4px 4px 0px rgba(0; 0; 0; 0.2)' : '0px 2px 4px 0px rgba(0; 0; 0; 0.2)',
+        }}
+        onClick={() => setIsOpen(!isOpen)}
+      >
         {selectedValue} {/* Display the currently selected value */}
+        <span
+          style={{
+            alignSelf: 'right',
+            position: 'relative',
+            left: '35px',
+            width: '10px',
+            height: '8px',
+            color: 'rgb(128, 128, 128)',
+            transform: 'translateY(-50%)',
+          }}
+        >
+          {isOpen ? '▲' : '▼'}
+        </span>
       </button>
       {isOpen && (
-        <ul className="dropdown-list">
+        <div className="dropdown-content">
           {data.map((value, index) => (
-            <li key={index} onClick={() => handleSelectChange(value)}>
+            <p key={index} onClick={() => handleSelectChange(value)}>
               {value}
-            </li>
+            </p>
           ))}
-        </ul>
+          {/* </ul> */}
+        </div>
       )}
     </div>
   );
