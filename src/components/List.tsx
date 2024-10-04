@@ -12,8 +12,8 @@ const List = ({ title, data, onSelect }: ListProps) => {
   };
 
   return (
-    <div className={title}>
-      <button onClick={() => setIsOpen(!isOpen)}>
+    <div className={'sort'} style={{ position: 'relative' }}>
+      <button style={{ width: '120px', height: '40px', border: 'none' }} onClick={() => setIsOpen(!isOpen)}>
         {selectedValue} {/* Display the currently selected value */}
       </button>
       {isOpen && (

@@ -115,15 +115,11 @@ const Home = () => {
         />
       </div>
 
-      <div className="task-container" style={{ top: '425px', position: 'absolute', width: '1920px', height: '610px' }}>
-        <div
-          className="task-sort"
-          style={{ width: '180px', height: '60px', top: '364px', left: '52px', position: 'absolute' }}
-        >
+      <div className="task-container" style={{ top: '425px', position: 'absolute', width: '1920px', height: '700px' }}>
+        <div className="task-selector">
           <List title={'task'} data={['oldest', 'latest']} onSelect={handleSortChange} />
-        </div>
-        <div className="task-clear">
-          <button> clear all </button>
+
+          <button className="task-clear"> clear all </button>
         </div>
 
         <div className="task-list">
