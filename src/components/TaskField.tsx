@@ -37,8 +37,21 @@ const TaskField = ({ id, contents, isDone, createdDate, modifiedDate }: TaskFiel
     setTasks((tasks) => tasks.filter((task) => task.id !== id));
   };
 
+  const handleTaskFieldClick = () => {
+    if (isDone) console.log('done');
+    else console.log('not complete');
+    axios
+      .put(`http://localhost:8080/tasks/${id}`, { isDone: true, contents: contents })
+      .then(() => {
+        console.log('Book delete successfully.');
+        setTasks((prevTasks) => prevTasks.map((task) => (task.id === id ? { ...task, is_done: true } : task)));
+      })
+      .catch((error) => {
+        console.log('Error while adding book:', error);
+      });
+  };
   return (
-    <div className="task-box">
+    <div className="task-box" onClick={handleTaskFieldClick}>
       <div className="checkbox-container">
         <input type="checkbox" id={`checkbox-${id}`} className="checkbox"></input>
         <label htmlFor={`checkbox-${id}`} className="checkbox-label" />
