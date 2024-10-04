@@ -5,9 +5,7 @@ import axios from 'axios';
 interface TaskContextType {
   sortOrder: string;
   tasks: Task[];
-  // sortedTasks: Task[];
-  setTasks: React.Dispatch<React.SetStateAction<Task[]>>; // This is the function to set tasks
-  // setSortedTasks: React.Dispatch<React.SetStateAction<Task[]>>; // This is the function to set tasks
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   setSortOrder: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -15,20 +13,19 @@ const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
 export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [tasks, setTasks] = useState<Task[] | []>([]);
-  // const [sortedTasks, setSortedTasks] = useState<Task[] | []>(preTasks);
+
   const [sortOrder, setSortOrder] = useState<string>('oldest');
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/tasks'); // 서버 API 엔드포인트
-      // console.log(response.data[0].modifiedDate);
+      const response = await axios.get('http://localhost:8080/tasks');
 
       const formattedTasks: Task[] = response.data.map((task: Task) => ({
         id: task.id,
         contents: task.contents,
-        is_done: task.done, // 'done'을 'is_done'으로 변환
-        created_date: task.createDate, // 날짜 문자열
-        modified_date: task.modifiedDate, // 날짜 문자열
+        is_done: task.done,
+        created_date: task.createDate,
+        modified_date: task.modifiedDate,
       }));
 
       // 상태 업데이트
@@ -39,7 +36,7 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
-    fetchTasks(); // 컴포넌트가 마운트될 때 초기 데이터 가져오기
+    fetchTasks();
   }, []);
 
   return <TaskContext.Provider value={{ tasks, setTasks, sortOrder, setSortOrder }}>{children}</TaskContext.Provider>;

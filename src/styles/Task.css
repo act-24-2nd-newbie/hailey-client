@@ -5,7 +5,6 @@
     width: 100%;
     height: 70px;
 
-    /* gap: 15px; */
 
     display: flex;
     flex-direction: row;
@@ -19,7 +18,7 @@
     align-items: center; 
     position: relative; 
     padding-left: 12px;
-    /* width: 5%; */
+   
   }
 
 .checkbox {
@@ -37,7 +36,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 2px solid #000; */
+    
   }
   
   .checkbox-label::after {
@@ -59,9 +58,8 @@
   
 
 .checkbox:checked + .checkbox-label::after {
-    background-color: #2A82F0; /* 체크된 상태에서의 원 배경색 */
+    background-color: #2A82F0; /
 }
-
 
 .content {
   width: 75%;

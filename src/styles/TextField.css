@@ -42,22 +42,22 @@
   }
   
   .textfield-send {
-    display: flex;             /* Flexbox for the send button */
-    align-items: center;       /* Vertically center the send button */
+    display: flex;            
+    align-items: center;       
   }
   
   #textfield-input-text {
-    border: none;              /* Remove default border */
-    outline: none;             /* Remove outline on focus */
-    flex-grow: 1;              /* Allow input to grow */
-    font-size: 16px;           /* Set font size */
+    border: none;              
+    outline: none;             
+    flex-grow: 1;             
+    font-size: 16px;           
   }
   
   .textfield-button-delete,
   .textfield-button-send {
-    width: 24px;               /* Set width for icons */
-    height: 24px;              /* Set height for icons */
-    cursor: pointer;           /* Change cursor to pointer on hover */
-    margin-left: 5px;          /* Space between icons */
+    width: 24px;               
+    height: 24px;              
+    cursor: pointer;          
+    margin-left: 5px;          
 
   }

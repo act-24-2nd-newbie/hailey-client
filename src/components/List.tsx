@@ -22,7 +22,7 @@ const List = ({ data, onSelect }: ListProps) => {
         }}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {selectedValue} {/* Display the currently selected value */}
+        {selectedValue}
         <span
           style={{
             alignSelf: 'right',

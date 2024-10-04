@@ -44,7 +44,7 @@ const TextField = ({ borderVisible = true, placeholder, onSend, width, top, left
           onChange={(e) => {
             setInputValue(e.target.value);
           }}
-          onFocus={() => setIsFocused(true)} // 포커스 상태 true
+          onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onKeyDown={activeEnter}
         />
