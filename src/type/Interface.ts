@@ -5,11 +5,13 @@ export interface TopbarProps {
 export interface TaskFieldProps {
   id: number;
   contents: string;
-  date: Date;
+  isDone: boolean;
+  createdDate: Date;
+  modifiedDate: Date;
 }
 
 export interface TextFieldProps {
-  borderVisible?: boolean; // Optional prop to control border visibility
+  borderVisible?: boolean;
   placeholder: string;
   onSend: (value: string) => void;
   width: number;
@@ -28,7 +30,7 @@ export interface ButtonProps {
 }
 
 export interface Task {
-  id: number; // 또는 number
+  id: number;
   contents: string;
   is_done: boolean;
   modified_date: Date;

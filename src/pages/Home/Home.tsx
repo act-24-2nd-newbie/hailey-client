@@ -150,7 +150,14 @@ const Home = () => {
             </div>
           ) : (
             tasks.map((task: Task) => (
-              <TaskField key={task.id} id={task.id} contents={task.contents} date={task.modified_date} />
+              <TaskField
+                key={task.id}
+                id={task.id}
+                contents={task.contents}
+                isDone={task.is_done}
+                createdDate={task.created_date}
+                modifiedDate={task.modified_date}
+              />
             ))
           )}
         </div>

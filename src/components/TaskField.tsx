@@ -3,23 +3,25 @@ import '../styles/Task.css';
 import axios from 'axios';
 import { TaskFieldProps } from '../type/Interface';
 import { useTask } from '../context/TaskContext';
-// import btn_remove from '../assets/btn_remove.png';
+import btn_remove from '../assets/btn_remove.png';
 
-const TaskField = ({ id, contents, date }: TaskFieldProps) => {
-  const { tasks, setTasks } = useTask();
+const TaskField = ({ id, contents, isDone, createdDate, modifiedDate }: TaskFieldProps) => {
+  const { setTasks } = useTask();
 
   // 날짜 형식 지정: MM/DD
-  // const formattedDate = date.toLocaleDateString('en-US', {
-  //   month: 'numeric',
-  //   day: 'numeric',
-  // });
+  const formattedDate = (date: Date) => {
+    const newDate = new Date(date).toLocaleDateString('en-US', {
+      month: 'numeric',
+      day: 'numeric',
+    });
 
-  // // 시간 형식 지정: HH:MM
-  // const formattedTime = date.toLocaleTimeString('en-US', {
-  //   hour: 'numeric',
-  //   minute: 'numeric',
-  //   hour12: false, // 24시간 형식 사용 (true면 12시간 형식)
-  // });
+    const newTime = new Date(date).toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: false, // 24시간 형식 사용 (true면 12시간 형식)
+    });
+    return `${newDate} ${newTime}`;
+  };
 
   const handleDelete = () => {
     console.log('!', id);
@@ -43,9 +45,17 @@ const TaskField = ({ id, contents, date }: TaskFieldProps) => {
       </div>
 
       <p className="content"> {contents} </p>
-      <p className="date"> {/* Created: {date} {date}{' '} */}</p>
+
+      {formattedDate(createdDate) === formattedDate(modifiedDate) ? (
+        <p className="date">Created: {formattedDate(createdDate)}</p>
+      ) : (
+        <p className="date">
+          Created: {formattedDate(createdDate)} (Modified: {formattedDate(modifiedDate)} )
+        </p>
+      )}
+
       <div className="image-container" onClick={() => handleDelete()}>
-        <img src="btn_remove.png" alt="Remove Button" className="remove" />
+        <img src={btn_remove} alt="Remove Button" className="remove" />
       </div>
     </div>
   );

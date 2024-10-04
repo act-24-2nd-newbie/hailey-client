@@ -58,20 +58,21 @@
   
 
 .checkbox:checked + .checkbox-label::after {
-    background-color: #2A82F0; /
+    background-color: #2A82F0; 
 }
 
 .content {
-  width: 75%;
+  width: 57%;
 
 }
 
 
 .date {
-  width: 15%;
+  width: 35%;
     text-align: end;
     font-size: 14px;
     color: black;
+    padding-right: 15px;
 }
 
 .image-container {
@@ -91,5 +92,4 @@
 
 .remove {
     display: none; 
-    
 }
