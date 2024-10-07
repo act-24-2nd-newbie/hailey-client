@@ -1,14 +1,36 @@
-import React, {useState} from 'react';
+import React,{useState, useEffect, useRef} from 'react';
 import '../styles/Task.css';
 import axios from 'axios';
 import { TaskFieldProps } from '../type/Interface';
+import TextField from './TextField'
 import { useTask } from '../context/TaskContext';
 import btn_remove from '../assets/btn_remove.png';
 import TextField from './TextField';
 
-const TaskField = ({ id, contents, isDone, createdDate, modifiedDate }: TaskFieldProps) => {
+const TaskField = ({ id, contents, isDone:initialIsDone, createdDate, modifiedDate:initialModifiedDate }: TaskFieldProps) => {
   const { setTasks } = useTask();
+  const [modifiedDate, setModifiedDate] =useState<Date>(initialModifiedDate);
+  const [currentContent, setCurrentContent] = useState<string>(contents);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isDone, setIsDone] = useState<boolean>(initialIsDone);
+  const taskFieldRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (taskFieldRef.current && !taskFieldRef.current.contains(event.target as Node)) {
+        setIsEditing(false);
+      }
+    };
+
+    if (isEditing) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isEditing]);
+
 
   // 날짜 형식 지정: MM/DD
   const formattedDate = (date: Date) => {
@@ -26,6 +48,7 @@ const TaskField = ({ id, contents, isDone, createdDate, modifiedDate }: TaskFiel
   };
 
   const handleDelete = () => {
+    console.log(createdDate);
     console.log('!', id);
     axios
       .delete(`http://localhost:8080/tasks/${id}`)
@@ -39,60 +62,51 @@ const TaskField = ({ id, contents, isDone, createdDate, modifiedDate }: TaskFiel
     setTasks((tasks) => tasks.filter((task) => task.id !== id));
   };
 
-  const handleTaskFieldClick = () => {
-    setIsEditing(true);
+  const handleUpdate = (inputValue: string) => {
+    
+    console.log("origin : ", contents);
+    console.log("update : ", inputValue);
+    setModifiedDate(new Date());
+    setCurrentContent(inputValue);
+    setIsEditing(false);
 
-    if (isDone) console.log('done');
-    else console.log('not complete');
     axios
-      .put(`http://localhost:8080/tasks/${id}`, { isDone: true, contents: contents })
+      .put(`http://localhost:8080/tasks/${id}`, {contents:inputValue, modifiedDate:modifiedDate, isDone:isDone})
       .then(() => {
         console.log('Book delete successfully.');
-        setTasks((prevTasks) => prevTasks.map((task) => (task.id === id ? { ...task, is_done: true } : task)));
       })
       .catch((error) => {
         console.log('Error while adding book:', error);
       });
-  };
+  }
 
-  const handleSend = (value: string) => {
-    // setTaskContent(value); // 내용 업데이트
-    if(value!==null){
-      axios
-      .put(`http://localhost:8080/tasks/${id}`, { isDone: false, contents: value }) // 요청 시 내용 전송
+  const handleDone = () => {
+    setModifiedDate(new Date());
+    setIsDone(true);
+    console.log("isDone");
+    axios
+      .put(`http://localhost:8080/tasks/${id}`, {contents:currentContent, modifiedDate:modifiedDate, isDone:true})
       .then(() => {
-        setTasks((prevTasks) => prevTasks.map((task) => (task.id === id ? { ...task, contents: value } : task)));
+        console.log('Book delete successfully.');
       })
       .catch((error) => {
-        console.log('Error while updating task:', error);
+        console.log('Error while adding book:', error);
       });
-    } 
-    setIsEditing(false); // 편집 완료 후 상태 변경
-    
-  };
-
+  }
 
   return (
-    <div className="task-box" onClick={handleTaskFieldClick}>
-      <div className="checkbox-container">
-        <input type="checkbox" id={`checkbox-${id}`} className="checkbox"></input>
-        <label htmlFor={`checkbox-${id}`} className="checkbox-label" />
-      </div>
+    <div className="task-box" ref={taskFieldRef}>
+      {isEditing?  (
+        <TextField width={'100%'} inputValue={currentContent} focus={true} onSend={(inputValue)=>handleUpdate(inputValue)}/>
+      ):
+      (
+      <>
+        <div className="checkbox-container">
+          <input type="checkbox" id={`checkbox-${id}`} className="checkbox" onChange={handleDone} checked={isDone}></input>
+          <label htmlFor={`checkbox-${id}`} className="checkbox-label" />
+        </div>
 
-      {isEditing ? ( // 편집 모드일 경우 TextField 렌더링
-        <TextField
-          borderVisible
-          placeholder="Edit task..."
-          onSend={handleSend}
-          width={0}
-          top={0}
-          left={0}
-        />
-      ) : (
-        <p className="content">{contents}</p>
-      )}
-
-      
+      <p className="content"> {contents} </p>
 
       {formattedDate(createdDate) === formattedDate(modifiedDate) ? (
         <p className="date">Created: {formattedDate(createdDate)}</p>
@@ -102,9 +116,12 @@ const TaskField = ({ id, contents, isDone, createdDate, modifiedDate }: TaskFiel
         </p>
       )}
 
-      <div className="image-container" onClick={() => handleDelete()}>
-        <img src={btn_remove} alt="Remove Button" className="remove" />
-      </div>
+        <div className="image-container" onClick={() => handleDelete()}>
+          <img src={btn_remove} alt="Remove Button" className="remove" />
+        </div>
+      </>
+    )}
+      
     </div>
   );
 };

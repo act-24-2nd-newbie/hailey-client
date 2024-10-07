@@ -13,10 +13,12 @@ export interface TaskFieldProps {
 export interface TextFieldProps {
   borderVisible?: boolean;
   placeholder: string;
+  inputValue: string;
   onSend: (value: string) => void;
   width: number;
   top: number;
   left: number;
+  focus: boolean;
 }
 
 export interface ListProps {
