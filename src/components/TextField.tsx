@@ -5,8 +5,8 @@ import ic_send_inactive from '../assets/ic_send_inactive.png';
 import '../styles/TextField.css';
 import type { TextFieldProps } from '../type/Interface';
 
-const TextField = ({ borderVisible = true, placeholder, onSend, width, top, left }: TextFieldProps) => {
-  const [inputValue, setInputValue] = useState<string>('');
+const TextField = ({ borderVisible = true, placeholder='', inputValue:initialInputValue="",onSend, width, top, left, focus=false }: TextFieldProps) => {
+  const [inputValue, setInputValue] = useState<string>(initialInputValue);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -16,6 +16,10 @@ const TextField = ({ borderVisible = true, placeholder, onSend, width, top, left
   };
 
   const handleSendClick = () => {
+    if(inputValue.length===0 ||inputValue===initialInputValue) {
+      inputRef.current?.focus();
+      return;
+    }
     if (inputValue.length === 0) inputRef.current?.blur();
     if (onSend) {
       onSend(inputValue);
@@ -25,7 +29,7 @@ const TextField = ({ borderVisible = true, placeholder, onSend, width, top, left
   };
 
   const activeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && inputValue.length!==0 && initialInputValue!==inputValue) {
       handleSendClick();
     }
   };
@@ -47,6 +51,7 @@ const TextField = ({ borderVisible = true, placeholder, onSend, width, top, left
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onKeyDown={activeEnter}
+          autoFocus={focus}
         />
         {inputValue.length > 0 && (
           <img className="textfield-button-delete" src={ic_delete} onClick={handleDeleteClick} />

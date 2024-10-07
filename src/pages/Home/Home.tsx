@@ -33,14 +33,6 @@ const Home = () => {
       .catch((error) => {
         console.log('Error while adding book:', error);
       });
-    // axios
-    //   .get('http://localhost:8080/tasks/test')
-    //   .then((response) => {
-    //     console.log('Book added successfully.');
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error while adding book:', error);
-    //   });
   };
 
   const handleClearAll = () => {
@@ -106,7 +98,7 @@ const Home = () => {
         </p>
 
         <TextField
-          width={1780}
+          width={1120}
           top={284}
           left={60}
           borderVisible={true}
