@@ -1,10 +1,26 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { ListProps } from '../type/Interface';
 import '../styles/List.css';
 
 const List = ({ data, onSelect }: ListProps) => {
   const [selectedValue, setSelectedValue] = useState<string>(data[0]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false); // 외부 클릭 시 드롭다운 닫기
+      }
+  };
+
+  useEffect(() => {
+      // 클릭 이벤트 리스너 추가
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+          // 컴포넌트 언마운트 시 이벤트 리스너 제거
+          document.removeEventListener('mousedown', handleClickOutside);
+      };
+  }, []);
 
   const handleSelectChange = (value: string) => {
     setSelectedValue(value);
@@ -13,7 +29,7 @@ const List = ({ data, onSelect }: ListProps) => {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown" ref={dropdownRef}>
       <button
         className="dropdown-button"
         style={{
@@ -38,14 +54,14 @@ const List = ({ data, onSelect }: ListProps) => {
         </span>
       </button>
       {isOpen && (
-        <div className="dropdown-content">
+        <ul className="dropdown-content">
           {data.map((value, index) => (
-            <p key={index} onClick={() => handleSelectChange(value)}>
+            <li key={index} onClick={() => handleSelectChange(value)}>
               {value}
-            </p>
+            </li>
           ))}
           {/* </ul> */}
-        </div>
+        </ul>
       )}
     </div>
   );
