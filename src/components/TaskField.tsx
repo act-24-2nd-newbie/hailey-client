@@ -91,8 +91,8 @@ const TaskField = ({
     setIsEditing(false);
     axios
       .put(`http://localhost:8080/tasks/${id}`, { contents: currentContent, isDone: !isDone })
-      .then((response) => {
-        setModifiedDate(response.data.modifiedDate);
+      .then(() => {
+        // setModifiedDate(response.data.modifiedDate);
         console.log('done');
       })
       .catch((error) => {
@@ -102,6 +102,21 @@ const TaskField = ({
 
   return (
     <div className="task-box" ref={taskFieldRef}>
+      {!isEditing ? (
+        <div className="checkbox-container">
+          <input
+            type="checkbox"
+            id={`checkbox-${id}`}
+            className="checkbox"
+            onChange={handleDone}
+            checked={isDone}
+          ></input>
+          <label htmlFor={`checkbox-${id}`} className="checkbox-label" />
+        </div>
+      ) : (
+        <></>
+      )}
+
       {isEditing && !isDone ? (
         <TextField
           style={{ width: '100%', paddingLeft: '15px', paddingRight: '15px' }}
@@ -111,29 +126,17 @@ const TaskField = ({
         />
       ) : (
         <>
-          <div className="checkbox-container">
-            <input
-              type="checkbox"
-              id={`checkbox-${id}`}
-              className="checkbox"
-              onChange={handleDone}
-              checked={isDone}
-            ></input>
-            <label htmlFor={`checkbox-${id}`} className="checkbox-label" />
-          </div>
-
           <p
             className="content"
             onClick={() => {
               setIsEditing(true);
             }}
-            style={{ cursor: 'text' }}
+            style={isDone ? { textDecoration: 'line-through', opacity: '60%' } : { cursor: 'text' }}
           >
             {' '}
             {currentContent}{' '}
           </p>
-          {/* {console.log(createdDate)}
-          {console.log(modifiedDate)} */}
+
           {createdDate === modifiedDate ? (
             <p className="date">{formattedDate(createdDate)}</p>
           ) : (
@@ -141,11 +144,14 @@ const TaskField = ({
               {formattedDate(createdDate)} (Modified: {formattedDate(modifiedDate)} )
             </p>
           )}
-
-          <div className="image-container" onClick={() => handleDelete()}>
-            <img src={btn_remove} alt="Remove Button" className="remove" />
-          </div>
         </>
+      )}
+      {!isEditing ? (
+        <div className="image-container" onClick={() => handleDelete()}>
+          <img src={btn_remove} alt="Remove Button" className="remove" />
+        </div>
+      ) : (
+        <></>
       )}
     </div>
   );
