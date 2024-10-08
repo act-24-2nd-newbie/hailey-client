@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../styles/Task.css';
+import '../styles/TaskField.css';
 import axios from 'axios';
 import { TaskFieldProps } from '../type/Interface';
 import TextField from './TextField';
