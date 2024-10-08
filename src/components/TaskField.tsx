@@ -101,7 +101,7 @@ const TaskField = ({
     <div className="task-box" ref={taskFieldRef}>
       {isEditing && !isDone ? (
         <TextField
-          width={'100%'}
+          style={{ width: '100%', paddingLeft: '15px', paddingRight: '15px' }}
           inputValue={currentContent}
           focus={true}
           onSend={(inputValue) => handleUpdate(inputValue)}

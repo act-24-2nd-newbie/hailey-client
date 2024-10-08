@@ -15,9 +15,7 @@ export interface TextFieldProps {
   placeholder: string;
   inputValue: string;
   onSend: (value: string) => void;
-  width: number;
-  top: number;
-  left: number;
+  style: React.CSSProperties;
   focus: boolean;
 }
 

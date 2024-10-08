@@ -53,9 +53,7 @@ const Login = () => {
         What is your name?{' '}
       </h1>
       <TextField
-        left={120}
-        top={292}
-        width={680}
+        style={{ width: '680px', top: '292px', left: '120px' }}
         borderVisible={true}
         placeholder="Input your name"
         onSend={handleNameSend}

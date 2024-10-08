@@ -5,7 +5,14 @@ import ic_send_inactive from '../assets/ic_send_inactive.png';
 import '../styles/TextField.css';
 import type { TextFieldProps } from '../type/Interface';
 
-const TextField = ({ borderVisible = true, placeholder='', inputValue:initialInputValue="",onSend, width, top, left, focus=false }: TextFieldProps) => {
+const TextField = ({
+  borderVisible = true,
+  placeholder = '',
+  inputValue: initialInputValue = '',
+  onSend,
+  style = {},
+  focus = false,
+}: TextFieldProps) => {
   const [inputValue, setInputValue] = useState<string>(initialInputValue);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -16,7 +23,7 @@ const TextField = ({ borderVisible = true, placeholder='', inputValue:initialInp
   };
 
   const handleSendClick = () => {
-    if(inputValue.length===0 ||inputValue===initialInputValue) {
+    if (inputValue.length === 0 || inputValue === initialInputValue) {
       inputRef.current?.focus();
       return;
     }
@@ -29,7 +36,7 @@ const TextField = ({ borderVisible = true, placeholder='', inputValue:initialInp
   };
 
   const activeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && inputValue.length!==0 && initialInputValue!==inputValue) {
+    if (e.key === 'Enter' && inputValue.length !== 0 && initialInputValue !== inputValue) {
       handleSendClick();
     }
   };
@@ -37,7 +44,7 @@ const TextField = ({ borderVisible = true, placeholder='', inputValue:initialInp
   const isInputActive = isFocused && inputValue.length > 0;
 
   return (
-    <div className={`textfield ${borderVisible ? 'border' : ''}`} style={{ width: width, top: top, left: left }}>
+    <div className={`textfield ${borderVisible ? 'border' : ''}`} style={style}>
       <div className={`textfield-text ${isFocused ? 'focus' : ''}`}>
         <input
           id="textfield-input-text"

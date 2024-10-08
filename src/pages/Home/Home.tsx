@@ -99,9 +99,7 @@ const Home = () => {
         </p>
 
         <TextField
-          width={1120}
-          top={284}
-          left={60}
+          style={{ width: '1120px', top: '284px', left: '60px' }}
           borderVisible={true}
           placeholder="Enter your task"
           onSend={(taskTitle) => handleCreateTask(taskTitle)}

@@ -10,15 +10,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-left: 15px;
-    padding-right: 15px;
+    /* margin-left: 15px;
+    margin-right: 15px; */
 }
 
 .checkbox-container {
     display: flex;
     align-items: center; 
     position: relative; 
-    
+    margin-left:15px;
    
   }
 
@@ -92,7 +92,7 @@
    
     background-image: url('../assets/btn_remove.png');
     background-size: cover; 
-    /* margin-right:15px;  */
+    margin-right:15px; 
     
 }
 
