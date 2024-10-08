@@ -12,11 +12,11 @@ export interface TaskFieldProps {
 
 export interface TextFieldProps {
   borderVisible?: boolean;
-  placeholder: string;
-  inputValue: string;
-  onSend: (value: string) => void;
-  style: React.CSSProperties;
-  focus: boolean;
+  placeholder?: string;
+  inputValue?: string;
+  onSend?: (value: string) => void;
+  style?: React.CSSProperties;
+  focus?: boolean;
 }
 
 export interface ListProps {
