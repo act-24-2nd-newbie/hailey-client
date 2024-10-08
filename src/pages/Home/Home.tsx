@@ -149,9 +149,7 @@ const Home = () => {
                 isDone={task.isDone}
                 createdDate={task.createdDate}
                 modifiedDate={task.modifiedDate}
-              >
-                {console.log(task)}
-              </TaskField>
+              ></TaskField>
             ))
           )}
         </div>
