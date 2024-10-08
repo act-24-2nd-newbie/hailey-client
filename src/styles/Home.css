@@ -1,47 +1,87 @@
 .home-page {
+    
+}
+.info p{
+  position: absolute;
+  left: 60px;
+  font-family: Roboto;
+  font-size: 24px;
+font-weight: 400;
+line-height: 36px;
+text-align: left;
+}
+
+.task-container {
+    overflow-y: scroll; 
+    background: rgba(244, 244, 244, 1);
+
+    position: relative;
+    top: 320px;
+    /* width: 1920px;  */
+    height: 700px;
+
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin-top: 100px;
-    min-height: 100vh;
+    align-content: center;
     
 }
-.info {
-    padding-left: 100px;
-    height: 40%;
-    min-height: 100%;
+
+.task-selector {
+  
+
+  display: flex;
+  justify-content: space-between;
+  
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.task {
-    flex-grow: 1;
-    display: flex;           
-    flex-direction: column;  
-    align-items: center;  
-    background: rgba(244, 244, 244, 1);
-    min-height: 100%;
-    margin-top: 20px;  
+
+.task-clear {
+  position: relative;
+  
+  width: 120px;
+  
+  border: 0;
+  background: rgba(244, 244, 244);
+
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 4px;
+
 }
 
-.task-img {
-    
-    margin-top: 75px;
-    width: 20%;
-    height: 20%;
-    /* height: auto; */
+.task-clear:hover {
+  background: rgba(0, 0, 0, 0.08);
+
 }
 
-.task-text {
-    margin-top: 10px;       /* 텍스트와 이미지 간의 간격 추가 */
+.task-list {
+  
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 80px;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
-p {
+
+/* p {
     font-family: Roboto;
     font-size: 24px;
     font-weight: 400;
     text-align: left;
     line-height: 20px;
     
-}
+} */
 
 h1 {
     font-family: Roboto;
@@ -49,4 +89,15 @@ h1 {
     font-weight: 700;
     line-height: 72px;
     text-align: left;
+}
+
+.no-task {
+
+  position: absolute;
+  width: 300px;
+  height: 250px;
+  top: 10%;
+  left: 50%;
+  margin-left: -150px;
+   margin-top: 50px;  
 }

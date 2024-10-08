@@ -2,8 +2,37 @@ export interface TopbarProps {
   title?: string;
 }
 
+export interface TaskFieldProps {
+  id: number;
+  contents: string;
+  isDone: boolean;
+  createdDate: string;
+  modifiedDate: string;
+}
+
 export interface TextFieldProps {
-  borderVisible?: boolean; // Optional prop to control border visibility
-  placeholder: string;
-  onSend: (value: string) => void;
+  borderVisible?: boolean;
+  placeholder?: string;
+  inputValue?: string;
+  onSend?: (value: string) => void;
+  style?: React.CSSProperties;
+  focus?: boolean;
+}
+
+export interface ListProps {
+  title: string;
+  data: string[];
+  onSelect: (value: string) => void;
+}
+
+export interface ButtonProps {
+  title: string;
+}
+
+export interface Task {
+  id: number;
+  contents: string;
+  isDone: boolean;
+  modifiedDate: string;
+  createdDate: string;
 }
