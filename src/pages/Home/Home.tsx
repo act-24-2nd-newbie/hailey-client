@@ -13,7 +13,7 @@ import illust_empty from '../../assets/illust_empty.png';
 
 const Home = () => {
   const location = useLocation();
-  const { tasks, setTasks, setSortOrder, countTasks, countDoneTasks, setCountTasks } = useTask();
+  const { tasks, setTasks, sortOrder, setSortOrder, countTasks, countDoneTasks, setCountTasks } = useTask();
 
   const handleCreateTask = (taskTitle: string) => {
     // #6 api 호출
@@ -45,7 +45,6 @@ const Home = () => {
 
   const handleSortChange = (value: string) => {
     setSortOrder(value);
-    console.log('sortOrder : ', value);
   };
 
   function welcomeMsg() {
@@ -142,7 +141,7 @@ const Home = () => {
               <img className="no-task-img" src={illust_empty} />
               <p className="no-task-text"> There is no task registered. </p>
             </div>
-          ) : (
+          ) : sortOrder === 'Latest' ? (
             tasks.map((task: Task) => (
               <TaskField
                 key={task.id}
@@ -153,6 +152,20 @@ const Home = () => {
                 modifiedDate={task.modifiedDate}
               ></TaskField>
             ))
+          ) : (
+            tasks
+              .slice()
+              .reverse()
+              .map((task: Task) => (
+                <TaskField
+                  key={task.id}
+                  id={task.id}
+                  contents={task.contents}
+                  isDone={task.isDone}
+                  createdDate={task.createdDate}
+                  modifiedDate={task.modifiedDate}
+                ></TaskField>
+              ))
           )}
         </div>
       </div>

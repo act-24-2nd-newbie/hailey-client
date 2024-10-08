@@ -1,31 +1,33 @@
 import { useState, useRef, useEffect } from 'react';
 import type { ListProps } from '../type/Interface';
 import '../styles/List.css';
+import { useTask } from '../context/TaskContext';
 
 const List = ({ data, onSelect }: ListProps) => {
-  const [selectedValue, setSelectedValue] = useState<string>(data[0]);
+  // const [selectedValue, setSelectedValue] = useState<string>(data[0]);
+  const { sortOrder, setSortOrder } = useTask();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false); // 외부 클릭 시 드롭다운 닫기
-      }
+      setIsOpen(false); // 외부 클릭 시 드롭다운 닫기
+    }
   };
 
   useEffect(() => {
-      // 클릭 이벤트 리스너 추가
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-          // 컴포넌트 언마운트 시 이벤트 리스너 제거
-          document.removeEventListener('mousedown', handleClickOutside);
-      };
+    // 클릭 이벤트 리스너 추가
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // 컴포넌트 언마운트 시 이벤트 리스너 제거
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const handleSelectChange = (value: string) => {
-    setSelectedValue(value);
+    setSortOrder(value);
     setIsOpen(false);
-    onSelect(selectedValue);
+    onSelect(value);
   };
 
   return (
@@ -38,7 +40,7 @@ const List = ({ data, onSelect }: ListProps) => {
         }}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {selectedValue}
+        {sortOrder}
         <span
           style={{
             alignSelf: 'right',

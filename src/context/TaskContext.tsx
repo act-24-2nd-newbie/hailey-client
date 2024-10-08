@@ -7,6 +7,7 @@ interface TaskContextType {
   tasks: Task[];
   countTasks: number;
   countDoneTasks: number;
+
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   setSortOrder: React.Dispatch<React.SetStateAction<string>>;
   setCountTasks: React.Dispatch<React.SetStateAction<number>>;
@@ -19,7 +20,7 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [tasks, setTasks] = useState<Task[] | []>([]);
   const [countTasks, setCountTasks] = useState<number>(0);
   const [countDoneTasks, setCountDoneTasks] = useState<number>(0);
-  const [sortOrder, setSortOrder] = useState<string>('oldest');
+  const [sortOrder, setSortOrder] = useState<string>('Latest');
 
   const fetchTasks = async () => {
     try {
