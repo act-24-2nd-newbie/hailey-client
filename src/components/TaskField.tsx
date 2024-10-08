@@ -41,8 +41,6 @@ const TaskField = ({
 
   // 날짜 형식 지정: MM/DD
   const formattedDate = (date: string) => {
-    console.log('Date : ', date);
-
     const newDate = new Date(date).toLocaleDateString('en-US', {
       month: 'numeric',
       day: 'numeric',
@@ -53,20 +51,15 @@ const TaskField = ({
       minute: 'numeric',
       hour12: false, // 24시간 형식 사용 (true면 12시간 형식)
     });
-    console.log('newDate : ', newDate);
-    console.log('newTime : ', newTime);
+
     return `${newDate} ${newTime}`;
   };
 
   const handleDelete = () => {
     axios
       .delete(`http://localhost:8080/tasks/${id}`)
-      .then(() => {
-        console.log('Book delete successfully.');
-      })
-      .catch((error) => {
-        console.log('Error while adding book:', error);
-      });
+      .then(() => {})
+      .catch(() => {});
 
     setTasks((tasks) => tasks.filter((task) => task.id !== id));
   };
@@ -79,11 +72,8 @@ const TaskField = ({
       .put(`http://localhost:8080/tasks/${id}`, { contents: inputValue, modifiedDate: modifiedDate, isDone: isDone })
       .then((response) => {
         setModifiedDate(response.data.modifiedDate);
-        console.log('Book delete successfully.');
       })
-      .catch((error) => {
-        console.log('Error while adding book:', error);
-      });
+      .catch(() => {});
   };
 
   const handleDone = () => {
@@ -97,9 +87,7 @@ const TaskField = ({
     axios
       .put(`http://localhost:8080/tasks/${id}`, { contents: currentContent, isDone: !isDone })
       .then(() => {})
-      .catch((error) => {
-        console.log('Error while adding book:', error);
-      });
+      .catch(() => {});
   };
 
   return (

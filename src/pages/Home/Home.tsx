@@ -20,9 +20,6 @@ const Home = () => {
     axios
       .post('http://localhost:8080/tasks', { contents: taskTitle })
       .then((response) => {
-        console.log('Book added successfully. ');
-        console.log(response.data.modifiedDate);
-        console.log(response.data.createdDate);
         const newTask: Task = {
           id: response.data.id,
           contents: response.data.contents,
@@ -33,21 +30,15 @@ const Home = () => {
         setTasks((prevTasks) => [...prevTasks, newTask]);
         setCountTasks(countTasks + 1);
       })
-      .catch((error) => {
-        console.log('Error while adding book:', error);
-      });
+      .catch(() => {});
   };
 
   const handleClearAll = () => {
     // #11 delete api 호출
     axios
       .delete('http://localhost:8080/tasks')
-      .then(() => {
-        console.log('Book added successfully.');
-      })
-      .catch((error) => {
-        console.log('Error while adding book:', error);
-      });
+      .then(() => {})
+      .catch(() => {});
     setCountTasks(0);
     setTasks([]);
   };
@@ -56,6 +47,17 @@ const Home = () => {
     setSortOrder(value);
     console.log('sortOrder : ', value);
   };
+
+  function welcomeMsg() {
+    const now = new Date();
+    const hour = now.getHours();
+
+    // console.log(hour);
+    if (hour >= 7 && hour < 12) return 'Good morning, ';
+    else if (hour >= 12 && hour < 18) return 'Good afternoon, ';
+    else if (hour >= 18 && hour < 22) return 'Good evening, ';
+    else return 'Good night, ';
+  }
 
   return (
     <div className="home-page">
@@ -66,7 +68,7 @@ const Home = () => {
           }}
         >
           {' '}
-          hello {location.state?.name}!{' '}
+          {welcomeMsg()} {location.state?.name}!{' '}
         </p>
         <p
           style={{
