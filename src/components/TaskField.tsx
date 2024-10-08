@@ -137,7 +137,7 @@ const TaskField = ({
               }}
               style={{ cursor: 'text' }}
             >
-              {formattedDate(createdDate)}
+              Created: {formattedDate(createdDate)}
             </p>
           ) : (
             <p
@@ -147,7 +147,7 @@ const TaskField = ({
               }}
               style={{ cursor: 'text' }}
             >
-              {formattedDate(createdDate)} (Modified: {formattedDate(modifiedDate)} )
+              Created: {formattedDate(createdDate)} Modified: {formattedDate(modifiedDate)}
             </p>
           )}
         </>
