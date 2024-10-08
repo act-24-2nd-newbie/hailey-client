@@ -21,13 +21,14 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const fetchTasks = async () => {
     try {
       const response = await axios.get('http://localhost:8080/tasks');
+      console.log('taskcontext.tsx line 24 : ', response.data);
 
       const formattedTasks: Task[] = response.data.map((task: Task) => ({
         id: task.id,
         contents: task.contents,
-        is_done: task.done,
-        created_date: task.createDate,
-        modified_date: task.modifiedDate,
+        isDone: task.isDone,
+        createdDate: task.createdDate,
+        modifiedDate: task.modifiedDate,
       }));
 
       // 상태 업데이트
@@ -41,7 +42,11 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
     fetchTasks();
   }, []);
 
-  return <TaskContext.Provider value={{ tasks, setTasks, sortOrder, setSortOrder,countTasks, setCountTasks }}>{children}</TaskContext.Provider>;
+  return (
+    <TaskContext.Provider value={{ tasks, setTasks, sortOrder, setSortOrder, countTasks, setCountTasks }}>
+      {children}
+    </TaskContext.Provider>
+  );
 };
 
 export const useTask = () => {

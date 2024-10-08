@@ -13,11 +13,11 @@ const CurrentDateTime = () => {
   }, []);
 
   const formatDate = (date: Date) => {
-    const options: Intl.DateTimeFormatOptions = { month: 'numeric', day: 'numeric' };
-    const formattedDate = date.toLocaleDateString('en-US', options); // 월/일
+    const options: Intl.DateTimeFormatOptions = { month: 'numeric', day: 'numeric', timeZone: 'Asia/Seoul' };
+    const formattedDate = date.toLocaleDateString('ko-KR', options); // 월/일
 
-    const dayOptions: Intl.DateTimeFormatOptions = { weekday: 'short' };
-    const formattedDay = date.toLocaleDateString('en-US', dayOptions); // 요일
+    const dayOptions: Intl.DateTimeFormatOptions = { weekday: 'short', timeZone: 'Asia/Seoul' };
+    const formattedDay = date.toLocaleDateString('ko-KR', dayOptions); // 요일
 
     return `${formattedDate} (${formattedDay})`;
   };

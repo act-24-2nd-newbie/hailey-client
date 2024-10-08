@@ -20,14 +20,15 @@ const Home = () => {
     axios
       .post('http://localhost:8080/tasks', { contents: taskTitle })
       .then((response) => {
-        console.log('Book added successfully.');
-        const now = new Date();
+        console.log('Book added successfully. ');
+        console.log(response.data.modifiedDate);
+        console.log(response.data.createdDate);
         const newTask: Task = {
           id: response.data.id,
           contents: response.data.contents,
-          is_done: false,
-          modified_date: now,
-          created_date: now,
+          isDone: response.data.isDone,
+          modifiedDate: response.data.modifiedDate,
+          createdDate: response.data.createdDate,
         };
         setTasks((prevTasks) => [...prevTasks, newTask]);
       })
@@ -145,10 +146,12 @@ const Home = () => {
                 key={task.id}
                 id={task.id}
                 contents={task.contents}
-                isDone={task.is_done}
-                createdDate={task.created_date}
-                modifiedDate={task.modified_date}
-              />
+                isDone={task.isDone}
+                createdDate={task.createdDate}
+                modifiedDate={task.modifiedDate}
+              >
+                {console.log(task)}
+              </TaskField>
             ))
           )}
         </div>

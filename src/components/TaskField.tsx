@@ -14,12 +14,15 @@ const TaskField = ({
   modifiedDate: initialModifiedDate,
 }: TaskFieldProps) => {
   const { setTasks } = useTask();
-  const [modifiedDate, setModifiedDate] = useState<Date>(initialModifiedDate);
+  // const createdDate = initialCreatedDate;
+  const [modifiedDate, setModifiedDate] = useState<string>(initialModifiedDate);
   const [currentContent, setCurrentContent] = useState<string>(contents);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isDone, setIsDone] = useState<boolean>(initialIsDone);
   const taskFieldRef = useRef<HTMLDivElement | null>(null);
-
+  useEffect(() => {
+    console.log(initialIsDone);
+  }, [initialIsDone]);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (taskFieldRef.current && !taskFieldRef.current.contains(event.target as Node)) {
@@ -37,23 +40,25 @@ const TaskField = ({
   }, [isEditing]);
 
   // 날짜 형식 지정: MM/DD
-  const formattedDate = (date: Date) => {
+  const formattedDate = (date: string) => {
+    console.log('Date : ', date);
+
     const newDate = new Date(date).toLocaleDateString('en-US', {
       month: 'numeric',
       day: 'numeric',
     });
 
-    const newTime = new Date(date).toLocaleTimeString('en-US', {
+    const newTime = new Date(date).toLocaleTimeString('ko-KR', {
       hour: 'numeric',
       minute: 'numeric',
       hour12: false, // 24시간 형식 사용 (true면 12시간 형식)
     });
+    console.log('newDate : ', newDate);
+    console.log('newTime : ', newTime);
     return `${newDate} ${newTime}`;
   };
 
   const handleDelete = () => {
-    console.log(createdDate);
-    console.log('!', id);
     axios
       .delete(`http://localhost:8080/tasks/${id}`)
       .then(() => {
@@ -67,15 +72,13 @@ const TaskField = ({
   };
 
   const handleUpdate = (inputValue: string) => {
-    console.log('origin : ', contents);
-    console.log('update : ', inputValue);
-    setModifiedDate(new Date());
     setCurrentContent(inputValue);
     setIsEditing(false);
 
     axios
       .put(`http://localhost:8080/tasks/${id}`, { contents: inputValue, modifiedDate: modifiedDate, isDone: isDone })
-      .then(() => {
+      .then((response) => {
+        setModifiedDate(response.data.modifiedDate);
         console.log('Book delete successfully.');
       })
       .catch((error) => {
@@ -84,13 +87,13 @@ const TaskField = ({
   };
 
   const handleDone = () => {
-    setModifiedDate(new Date());
-    setIsDone(true);
-    console.log('isDone');
+    setIsDone(!isDone);
+    setIsEditing(false);
     axios
-      .put(`http://localhost:8080/tasks/${id}`, { contents: currentContent, modifiedDate: modifiedDate, isDone: true })
-      .then(() => {
-        console.log('Book delete successfully.');
+      .put(`http://localhost:8080/tasks/${id}`, { contents: currentContent, isDone: !isDone })
+      .then((response) => {
+        setModifiedDate(response.data.modifiedDate);
+        console.log('done');
       })
       .catch((error) => {
         console.log('Error while adding book:', error);
@@ -128,12 +131,13 @@ const TaskField = ({
             {' '}
             {currentContent}{' '}
           </p>
-
+          {/* {console.log(createdDate)}
+          {console.log(modifiedDate)} */}
           {createdDate === modifiedDate ? (
-            <p className="date">Created: {formattedDate(createdDate)}</p>
+            <p className="date">{formattedDate(createdDate)}</p>
           ) : (
             <p className="date">
-              Created: {formattedDate(createdDate)} (Modified: {formattedDate(modifiedDate)} )
+              {formattedDate(createdDate)} (Modified: {formattedDate(modifiedDate)} )
             </p>
           )}
 

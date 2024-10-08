@@ -27,14 +27,6 @@
     position: absolute; 
 }
 
-.checkbox:checked:disabled  {
-  background-color: #2A82F0; /* Keep it blue when checked and disabled */
-}
-
-/* For the checked state */
-.checkbox:checked  {
-  background-color: #2A82F0; /* This applies when checked */
-}
 
   .checkbox-label {
     width: 24px;
@@ -75,6 +67,9 @@
   width: 57%;
 
 }
+.checkbox:checked + .content{
+  opacity: 60%;
+}
 
 
 .date {
@@ -83,6 +78,7 @@
     font-size: 14px;
     color: black;
     padding-right: 15px;
+    opacity: 60%;
 }
 
 .image-container {
@@ -102,4 +98,8 @@
 
 .remove {
     display: none; 
+}
+
+p {
+  
 }

@@ -6,8 +6,8 @@ export interface TaskFieldProps {
   id: number;
   contents: string;
   isDone: boolean;
-  createdDate: Date;
-  modifiedDate: Date;
+  createdDate: string;
+  modifiedDate: string;
 }
 
 export interface TextFieldProps {
@@ -32,7 +32,7 @@ export interface ButtonProps {
 export interface Task {
   id: number;
   contents: string;
-  is_done: boolean;
-  modified_date: Date;
-  created_date: Date;
+  isDone: boolean;
+  modifiedDate: string;
+  createdDate: string;
 }
