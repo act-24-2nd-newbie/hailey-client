@@ -1,31 +1,55 @@
-.textfield {
+.textfield.border{
     display: flex;             
     align-items: center;       
     justify-content: space-between; 
     position: relative;
-    height: 32px;
+    height: 100%;
+
+    border: 2px solid rgba(42, 130, 240, 1);;    
+    border-radius: 4px;   
   }
 
-.textfield.border{
+.textfield{
   display: flex;              
   align-items: center;     
   justify-content: space-between; 
-
-  height: 32px;
+  position: relative;
+  height: 100%;
 }
-  
+.textfield-text.border {
+  display: flex;        
+  align-items: center;      
+  flex-grow: 1;    
+  height: 100%;
+  border: none;
+  cursor: text;
+}
+
   .textfield-text {
     display: flex;        
     align-items: center;      
     flex-grow: 1;    
-    height: 32px;
+    height: 100%;
     border: 2px solid #ccc;    
     border-radius: 1px;      
     border-top-style: none;
     border-right-style: none;
     border-bottom-style: solid;
     border-left-style: none;
+    cursor: text;
   }
+
+
+  .textfield-text.border.focus {
+    display: flex;            
+    align-items: center;      
+    flex-grow: 1;             
+
+    border: none;
+    height:100%;
+    cursor: text;
+  }
+
   .textfield-text.focus {
     display: flex;            
     align-items: center;      
@@ -37,9 +61,11 @@
     border-right-style: none;
     border-bottom-style: solid;
     border-left-style: none;
-    
+    cursor: text;
 
   }
+
+ 
   
   .textfield-send {
     display: flex;            

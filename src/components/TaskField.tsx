@@ -110,6 +110,7 @@ const TaskField = ({
 
       {isEditing && !isDone ? (
         <TextField
+          borderVisible={true}
           style={{ width: '100%', paddingLeft: '15px', paddingRight: '15px' }}
           inputValue={currentContent}
           focus={true}

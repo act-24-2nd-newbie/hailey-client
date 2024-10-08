@@ -6,7 +6,7 @@ import '../styles/TextField.css';
 import type { TextFieldProps } from '../type/Interface';
 
 const TextField = ({
-  borderVisible = true,
+  borderVisible = false,
   placeholder = '',
   inputValue: initialInputValue = '',
   onSend,
@@ -45,7 +45,7 @@ const TextField = ({
 
   return (
     <div className={`textfield ${borderVisible ? 'border' : ''}`} style={style}>
-      <div className={`textfield-text ${isFocused ? 'focus' : ''}`}>
+      <div className={`textfield-text ${borderVisible ? 'border' : ''} ${isFocused ? 'focus' : ''} `}>
         <input
           id="textfield-input-text"
           ref={inputRef}
