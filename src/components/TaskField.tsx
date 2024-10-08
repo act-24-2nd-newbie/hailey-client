@@ -13,7 +13,7 @@ const TaskField = ({
   createdDate,
   modifiedDate: initialModifiedDate,
 }: TaskFieldProps) => {
-  const { setTasks } = useTask();
+  const { countDoneTasks, setTasks, setCountDoneTasks } = useTask();
   // const createdDate = initialCreatedDate;
   const [modifiedDate, setModifiedDate] = useState<string>(initialModifiedDate);
   const [currentContent, setCurrentContent] = useState<string>(contents);
@@ -89,12 +89,14 @@ const TaskField = ({
   const handleDone = () => {
     setIsDone(!isDone);
     setIsEditing(false);
+    if (!isDone) setCountDoneTasks(countDoneTasks + 1);
+    else setCountDoneTasks(countDoneTasks - 1);
+    // isDone: false -> true
+    // isDone: true -> false
+
     axios
       .put(`http://localhost:8080/tasks/${id}`, { contents: currentContent, isDone: !isDone })
-      .then(() => {
-        // setModifiedDate(response.data.modifiedDate);
-        console.log('done');
-      })
+      .then(() => {})
       .catch((error) => {
         console.log('Error while adding book:', error);
       });
@@ -102,7 +104,7 @@ const TaskField = ({
 
   return (
     <div className="task-box" ref={taskFieldRef}>
-      {!isEditing ? (
+      {!isEditing || isDone ? (
         <div className="checkbox-container">
           <input
             type="checkbox"
@@ -146,7 +148,7 @@ const TaskField = ({
           )}
         </>
       )}
-      {!isEditing ? (
+      {!isEditing || isDone ? (
         <div className="image-container" onClick={() => handleDelete()}>
           <img src={btn_remove} alt="Remove Button" className="remove" />
         </div>

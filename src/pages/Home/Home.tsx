@@ -13,7 +13,7 @@ import illust_empty from '../../assets/illust_empty.png';
 
 const Home = () => {
   const location = useLocation();
-  const { tasks, setTasks, setSortOrder } = useTask();
+  const { tasks, setTasks, setSortOrder, countTasks, countDoneTasks, setCountTasks } = useTask();
 
   const handleCreateTask = (taskTitle: string) => {
     // #6 api 호출
@@ -31,6 +31,7 @@ const Home = () => {
           createdDate: response.data.createdDate,
         };
         setTasks((prevTasks) => [...prevTasks, newTask]);
+        setCountTasks(countTasks + 1);
       })
       .catch((error) => {
         console.log('Error while adding book:', error);
@@ -47,7 +48,7 @@ const Home = () => {
       .catch((error) => {
         console.log('Error while adding book:', error);
       });
-
+    setCountTasks(0);
     setTasks([]);
   };
 
@@ -88,7 +89,7 @@ const Home = () => {
           }}
         >
           {' '}
-          {2} / 2{' '}
+          {countDoneTasks} / {countTasks}{' '}
         </h1>
         <p
           style={{

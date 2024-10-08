@@ -6,9 +6,11 @@ interface TaskContextType {
   sortOrder: string;
   tasks: Task[];
   countTasks: number;
+  countDoneTasks: number;
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   setSortOrder: React.Dispatch<React.SetStateAction<string>>;
   setCountTasks: React.Dispatch<React.SetStateAction<number>>;
+  setCountDoneTasks: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -16,13 +18,12 @@ const TaskContext = createContext<TaskContextType | undefined>(undefined);
 export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [tasks, setTasks] = useState<Task[] | []>([]);
   const [countTasks, setCountTasks] = useState<number>(0);
+  const [countDoneTasks, setCountDoneTasks] = useState<number>(0);
   const [sortOrder, setSortOrder] = useState<string>('oldest');
 
   const fetchTasks = async () => {
     try {
       const response = await axios.get('http://localhost:8080/tasks');
-      console.log('taskcontext.tsx line 24 : ', response.data);
-
       const formattedTasks: Task[] = response.data.map((task: Task) => ({
         id: task.id,
         contents: task.contents,
@@ -31,8 +32,11 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
         modifiedDate: task.modifiedDate,
       }));
 
-      // 상태 업데이트
       setTasks(formattedTasks);
+      setCountTasks(formattedTasks.length);
+
+      const doneTasksCount = formattedTasks.filter((task) => task.isDone).length;
+      setCountDoneTasks(doneTasksCount);
     } catch (error) {
       console.error('Error fetching tasks:', error);
     }
@@ -43,7 +47,9 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <TaskContext.Provider value={{ tasks, setTasks, sortOrder, setSortOrder, countTasks, setCountTasks }}>
+    <TaskContext.Provider
+      value={{ tasks, setTasks, sortOrder, setSortOrder, countTasks, setCountTasks, countDoneTasks, setCountDoneTasks }}
+    >
       {children}
     </TaskContext.Provider>
   );
