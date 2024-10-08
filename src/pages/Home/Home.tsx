@@ -21,12 +21,13 @@ const Home = () => {
       .post('http://localhost:8080/tasks', { contents: taskTitle })
       .then((response) => {
         console.log('Book added successfully.');
+        const now = new Date();
         const newTask: Task = {
           id: response.data.id,
           contents: response.data.contents,
           is_done: false,
-          modified_date: new Date(),
-          created_date: new Date(),
+          modified_date: now,
+          created_date: now,
         };
         setTasks((prevTasks) => [...prevTasks, newTask]);
       })
