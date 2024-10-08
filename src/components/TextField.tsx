@@ -60,7 +60,7 @@ const TextField = ({
           onKeyDown={activeEnter}
           autoFocus={focus}
         />
-        {inputValue.length > 0 && (
+        {inputValue.length > 0 && !borderVisible && (
           <img className="textfield-button-delete" src={ic_delete} onClick={handleDeleteClick} />
         )}
       </div>
