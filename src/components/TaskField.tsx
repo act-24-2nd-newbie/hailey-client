@@ -127,6 +127,7 @@ const TaskField = ({
             onClick={() => {
               setIsEditing(true);
             }}
+            style={{ cursor: 'text' }}
           >
             {' '}
             {currentContent}{' '}
