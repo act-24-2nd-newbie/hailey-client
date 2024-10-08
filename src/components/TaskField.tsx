@@ -152,13 +152,7 @@ const TaskField = ({
           )}
         </>
       )}
-      {!isEditing || isDone ? (
-        <div className="image-container" onClick={() => handleDelete()}>
-          <img src={btn_remove} alt="Remove Button" className="remove" />
-        </div>
-      ) : (
-        <></>
-      )}
+      {!isEditing || isDone ? <div className="image-container" onClick={() => handleDelete()}></div> : <></>}
     </div>
   );
 };

@@ -20,7 +20,7 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [tasks, setTasks] = useState<Task[] | []>([]);
   const [countTasks, setCountTasks] = useState<number>(0);
   const [countDoneTasks, setCountDoneTasks] = useState<number>(0);
-  const [sortOrder, setSortOrder] = useState<string>('Latest');
+  const [sortOrder, setSortOrder] = useState<string>('Oldest');
 
   const fetchTasks = async () => {
     try {

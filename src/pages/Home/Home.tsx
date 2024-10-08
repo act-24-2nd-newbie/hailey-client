@@ -143,7 +143,7 @@ const Home = () => {
               <img className="no-task-img" src={illust_empty} />
               <p className="no-task-text"> There is no task registered. </p>
             </div>
-          ) : sortOrder === 'Latest' ? (
+          ) : sortOrder === 'Oldest' ? (
             tasks.map((task: Task) => (
               <TaskField
                 key={task.id}

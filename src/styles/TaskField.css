@@ -113,12 +113,13 @@
 
 .image-container {
    
-    width: 30px;  
-    height: 30px;  
+    width: 30px;
+    height: 29px;
    
     background-image: url('../assets/btn_remove.png');
-    background-size: cover; 
-    margin-right:15px; 
+    background-size: contain; 
+    /* padding-right:15px;  */
+    margin-right: 15px;
     
 }
 
