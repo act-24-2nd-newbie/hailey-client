@@ -69,9 +69,10 @@ const TaskField = ({
     setIsEditing(false);
 
     axios
-      .put(`http://localhost:8080/tasks/${id}`, { contents: inputValue, modifiedDate: modifiedDate, isDone: isDone })
+      .put(`http://localhost:8080/tasks/${id}`, { contents: inputValue, isDone: isDone })
       .then((response) => {
         setModifiedDate(response.data.modifiedDate);
+        console.log(response);
       })
       .catch(() => {});
   };
@@ -128,9 +129,23 @@ const TaskField = ({
           </p>
 
           {createdDate === modifiedDate ? (
-            <p className="date">{formattedDate(createdDate)}</p>
+            <p
+              className="date"
+              onClick={() => {
+                setIsEditing(true);
+              }}
+              style={{ cursor: 'text' }}
+            >
+              {formattedDate(createdDate)}
+            </p>
           ) : (
-            <p className="date">
+            <p
+              className="date"
+              onClick={() => {
+                setIsEditing(true);
+              }}
+              style={{ cursor: 'text' }}
+            >
               {formattedDate(createdDate)} (Modified: {formattedDate(modifiedDate)} )
             </p>
           )}
