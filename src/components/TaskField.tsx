@@ -13,7 +13,8 @@ const TaskField = ({
   modifiedDate: initialModifiedDate,
 }: TaskFieldProps) => {
   const { countDoneTasks, setTasks, setCountDoneTasks } = useTask();
-  const [modifiedDate, setModifiedDate] = useState<string>(initialModifiedDate);
+  const [modifiedDate, setModifiedDate] = useState<string | null>(initialModifiedDate);
+  const [isModified, setIsModified] = useState(false);
   const [currentContent, setCurrentContent] = useState<string>(contents);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isDone, setIsDone] = useState<boolean>(initialIsDone);
@@ -37,7 +38,9 @@ const TaskField = ({
   }, [isEditing]);
 
   // 날짜 형식 지정: MM/DD
-  const formattedDate = (date: string) => {
+  const formattedDate = (date: string | null) => {
+    if (!date) return '';
+
     const newDate = new Date(date).toLocaleDateString('en-US', {
       month: 'numeric',
       day: 'numeric',
@@ -64,13 +67,11 @@ const TaskField = ({
   const handleUpdate = (inputValue: string) => {
     setCurrentContent(inputValue);
     setIsEditing(false);
-
+    setIsModified(true);
     axios
       .put(`http://localhost:8080/tasks/${id}`, { contents: inputValue, isDone: isDone })
       .then((response) => {
         setModifiedDate(response.data.modifiedDate);
-
-        console.log(response);
       })
       .catch(() => {});
   };
@@ -78,7 +79,7 @@ const TaskField = ({
   const handleDone = () => {
     setIsDone(!isDone);
     setIsEditing(false);
-
+    setIsModified(true);
     if (!isDone) setCountDoneTasks(countDoneTasks + 1);
     else setCountDoneTasks(countDoneTasks - 1);
     // isDone: false -> true
@@ -88,6 +89,7 @@ const TaskField = ({
       .put(`http://localhost:8080/tasks/${id}`, { contents: currentContent, isDone: !isDone })
       .then((response) => {
         setModifiedDate(response.data.modifiedDate);
+        console.log(response.data);
       })
       .catch(() => {});
   };
@@ -130,27 +132,16 @@ const TaskField = ({
             {currentContent}{' '}
           </p>
 
-          {createdDate === modifiedDate ? (
-            <p
-              className="date"
-              onClick={() => {
-                setIsEditing(true);
-              }}
-              style={{ cursor: 'text' }}
-            >
-              Created: {formattedDate(createdDate)}
-            </p>
-          ) : (
-            <p
-              className="date"
-              onClick={() => {
-                setIsEditing(true);
-              }}
-              style={{ cursor: 'text' }}
-            >
-              Created: {formattedDate(createdDate)} (Modified: {formattedDate(modifiedDate)})
-            </p>
-          )}
+          <p
+            className="date"
+            onClick={() => {
+              setIsEditing(true);
+            }}
+            style={{ cursor: 'text' }}
+          >
+            Created: {formattedDate(createdDate)}
+            {isModified || modifiedDate ? ` (Modified: ${formattedDate(modifiedDate)})` : ''}
+          </p>
         </>
       )}
       {!isEditing || isDone ? <div className="image-container" onClick={() => handleDelete()}></div> : <></>}
