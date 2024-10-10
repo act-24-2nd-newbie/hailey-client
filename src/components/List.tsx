@@ -32,14 +32,7 @@ const List = ({ data, onSelect }: ListProps) => {
 
   return (
     <div className="dropdown" ref={dropdownRef}>
-      <button
-        className="dropdown-button"
-        style={{
-          borderRadius: isOpen ? '4px 4px 0 0' : '4px',
-          boxShadow: isOpen ? '0px 4px 4px 0px rgba(0; 0; 0; 0.2)' : '0px 2px 4px 0px rgba(0; 0; 0; 0.2)',
-        }}
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <button className={`dropdown-button ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
         {sortOrder}
         <span
           style={{
@@ -56,7 +49,7 @@ const List = ({ data, onSelect }: ListProps) => {
         </span>
       </button>
       {isOpen && (
-        <ul className="dropdown-content">
+        <ul className={`dropdown-content ${isOpen ? 'open' : ''}`}>
           {data.map((value, index) => (
             <li key={index} onClick={() => handleSelectChange(value)}>
               {value}

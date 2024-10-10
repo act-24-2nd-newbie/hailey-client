@@ -19,6 +19,7 @@ const TextField = ({
 
   const handleDeleteClick = () => {
     setInputValue('');
+
     inputRef.current?.focus();
   };
 

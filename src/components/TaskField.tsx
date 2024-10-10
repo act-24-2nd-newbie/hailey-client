@@ -4,7 +4,6 @@ import axios from 'axios';
 import { TaskFieldProps } from '../type/Interface';
 import TextField from './TextField';
 import { useTask } from '../context/TaskContext';
-import btn_remove from '../assets/btn_remove.png';
 
 const TaskField = ({
   id,
@@ -14,15 +13,13 @@ const TaskField = ({
   modifiedDate: initialModifiedDate,
 }: TaskFieldProps) => {
   const { countDoneTasks, setTasks, setCountDoneTasks } = useTask();
-  // const createdDate = initialCreatedDate;
   const [modifiedDate, setModifiedDate] = useState<string>(initialModifiedDate);
   const [currentContent, setCurrentContent] = useState<string>(contents);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isDone, setIsDone] = useState<boolean>(initialIsDone);
+
   const taskFieldRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    console.log(initialIsDone);
-  }, [initialIsDone]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (taskFieldRef.current && !taskFieldRef.current.contains(event.target as Node)) {
@@ -72,6 +69,7 @@ const TaskField = ({
       .put(`http://localhost:8080/tasks/${id}`, { contents: inputValue, isDone: isDone })
       .then((response) => {
         setModifiedDate(response.data.modifiedDate);
+
         console.log(response);
       })
       .catch(() => {});
@@ -80,6 +78,7 @@ const TaskField = ({
   const handleDone = () => {
     setIsDone(!isDone);
     setIsEditing(false);
+
     if (!isDone) setCountDoneTasks(countDoneTasks + 1);
     else setCountDoneTasks(countDoneTasks - 1);
     // isDone: false -> true
@@ -87,7 +86,9 @@ const TaskField = ({
 
     axios
       .put(`http://localhost:8080/tasks/${id}`, { contents: currentContent, isDone: !isDone })
-      .then(() => {})
+      .then((response) => {
+        setModifiedDate(response.data.modifiedDate);
+      })
       .catch(() => {});
   };
 
@@ -137,7 +138,7 @@ const TaskField = ({
               }}
               style={{ cursor: 'text' }}
             >
-              {formattedDate(createdDate)}
+              Created: {formattedDate(createdDate)}
             </p>
           ) : (
             <p
@@ -147,18 +148,12 @@ const TaskField = ({
               }}
               style={{ cursor: 'text' }}
             >
-              {formattedDate(createdDate)} (Modified: {formattedDate(modifiedDate)} )
+              Created: {formattedDate(createdDate)} (Modified: {formattedDate(modifiedDate)})
             </p>
           )}
         </>
       )}
-      {!isEditing || isDone ? (
-        <div className="image-container" onClick={() => handleDelete()}>
-          <img src={btn_remove} alt="Remove Button" className="remove" />
-        </div>
-      ) : (
-        <></>
-      )}
+      {!isEditing || isDone ? <div className="image-container" onClick={() => handleDelete()}></div> : <></>}
     </div>
   );
 };

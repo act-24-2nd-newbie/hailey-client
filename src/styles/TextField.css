@@ -76,7 +76,8 @@
     border: none;              
     outline: none;             
     flex-grow: 1;             
-    font-size: 16px;           
+    font-size: 16px;      
+    padding: 10px;     
   }
   
   .textfield-button-delete,
