@@ -4,7 +4,6 @@ import axios from 'axios';
 import { TaskFieldProps } from '../type/Interface';
 import TextField from './TextField';
 import { useTask } from '../context/TaskContext';
-import btn_remove from '../assets/btn_remove.png';
 
 const TaskField = ({
   id,
@@ -147,7 +146,7 @@ const TaskField = ({
               }}
               style={{ cursor: 'text' }}
             >
-              Created: {formattedDate(createdDate)} Modified: {formattedDate(modifiedDate)}
+              Created: {formattedDate(createdDate)} (Modified: {formattedDate(modifiedDate)})
             </p>
           )}
         </>
