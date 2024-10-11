@@ -30,7 +30,7 @@ const SignUp = () => {
     <div>
       <h1> Sign Up </h1>
       <TextField
-        style={{ width: '680px', height: 'auto', top: '292px', left: '120px' }}
+        style={{ width: '680px', height: '50px', position: 'fixed', top: '200px' }}
         placeholder="Input your name"
         field="signup"
         onSend={(value) => {
@@ -38,7 +38,7 @@ const SignUp = () => {
         }}
       />
       <TextField
-        style={{ width: '680px', height: 'auto', top: '292px', left: '120px' }}
+        style={{ width: '680px', height: '50px', position: 'fixed', top: '280px' }}
         placeholder="Input your email"
         type="email"
         field="signup"

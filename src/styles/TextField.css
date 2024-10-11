@@ -16,6 +16,7 @@
   position: relative;
   height: 100%;
 }
+
 .textfield-text.border {
   display: flex;        
   align-items: center;      
@@ -56,6 +57,19 @@
     flex-grow: 1;             
 
     border: 2px solid rgba(42, 130, 240, 1);;    
+    border-radius: 1px;       
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-left-style: none;
+    cursor: text;
+
+  }
+  .textfield-text.error {
+    display: flex;            
+    align-items: center;      
+    flex-grow: 1;             
+    border: 2px solid rgba(209, 80, 80, 1);
     border-radius: 1px;       
     border-top-style: none;
     border-right-style: none;
