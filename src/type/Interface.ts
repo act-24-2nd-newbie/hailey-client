@@ -17,6 +17,8 @@ export interface TextFieldProps {
   onSend?: (value: string) => void;
   style?: React.CSSProperties;
   focus?: boolean;
+  type?: string;
+  field?: string;
 }
 
 export interface ListProps {

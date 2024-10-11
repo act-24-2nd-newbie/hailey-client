@@ -1,3 +1,4 @@
+// import React, { useState } from 'react';
 import CurrentDateTime from './CurrentDateTime';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Topbar.css';
@@ -8,7 +9,7 @@ import { useAuth } from '../context/AuthContext';
 const Topbar = ({ title = 'My Todo' }: TopbarProps) => {
   const navigate = useNavigate();
   const { isLoggedIn, logout } = useAuth();
-
+  // const [gotoPage, setGotoPage] = useState<string>();
   const handleLogoClick = () => {
     navigate('/');
   };
@@ -19,7 +20,7 @@ const Topbar = ({ title = 'My Todo' }: TopbarProps) => {
       logout();
       navigate('/');
     } else {
-      navigate('/'); // 로그인 페이지로 이동
+      navigate('/SignUp');
     }
   };
 

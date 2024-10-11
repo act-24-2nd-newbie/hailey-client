@@ -5,16 +5,14 @@ import './styles/main.css';
 import axios from 'axios';
 import { AuthProvider } from './context/AuthContext';
 import { TaskProvider } from './context/TaskContext';
-import { BrowserRouter } from 'react-router-dom';
+
 axios.defaults.baseURL = 'http://localhost:8080/tasks';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <TaskProvider>
-          <App />
-        </TaskProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <AuthProvider>
+      <TaskProvider>
+        <App />
+      </TaskProvider>
+    </AuthProvider>
   </StrictMode>,
 );
